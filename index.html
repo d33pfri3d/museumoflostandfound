@@ -135,7 +135,7 @@
       <a-entity camera tracked-controls look-controls wasd-controls position="0.5 1.2 1">
       </a-entity>
 
-      <a-entity environment="skyType:gradient;skyColor:#404A9A;groundTexture: squares; fog: 0.5;groundColor:#404A9A;groundColor2:#8b559d;ground:noise;grid:crosses;"> 
+      <a-entity environment="skyType:gradient;skyColor:#404A9A;groundTexture: none; fog: 0.5;groundColor:#404A9A;groundColor2:#8b559d;ground:noise;grid:xlines;gridColor:#404A9A;"> 
         <a-entity position="0 0 0">
 
             <a-entity id="alberto" position="-0.25 0.2 0.7">
@@ -163,6 +163,7 @@
                
 
               <a-cylinder color="#fbba00" height="0.5" radius="0.2" position="0 0.2 0">
+                <a-light></a-light>
                   <a-gltf-model src="#allison-helmet" position="0 0.5 0" rotation="13 -30 34"></a-gltf-model>
               </a-cylinder>
 
