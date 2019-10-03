@@ -1,0 +1,73 @@
+<a-plane color="white" position="-2 0.8 -0.7" width="0.3" height="0.4">
+              <a-text 
+                value="If my mental health hadn't deteriorated and I had received proper care at a very early stage, my home would have consisted of family.  Specifically, I would have had children.  I see a direct correlation between me not having children with my bi-polar disorder.  I was never able to stay in a healthy relationship with anyone and with my constant crashing I knew I would never be in a state where I could responsibly take care of someone else, especially a child."
+                color="black"
+                height="0.4"
+                width="0.3"
+                >
+              </a-text>
+          </a-plane>
+          <a-gltf-model
+            id="tbl-mdl"
+            rotation="0 0 0"
+            src="#table"
+            position="0 0 0"
+          >
+          </a-gltf-model>
+          <a-gltf-model
+            id="mug-mdl"
+            rotation="-45 -90 0"
+            src="#mug"
+            position="-1.5 1 -1.2"
+          >
+          </a-gltf-model>
+        </a-entity>
+
+        <a-entity position="2 0 0">
+          <a-gltf-model
+            id="tbl-mdl"
+            rotation="0 0 0"
+            src="#table"
+            position="0 0 0"
+          >
+          </a-gltf-model>
+          <a-entity
+            rotation="-45 -90 0"
+            obj-model="obj: #passport"
+            position="-1.5 1 -1.2"
+
+            scale="0.01 0.01 0.01"
+          >
+          </a-entity>
+        </a-entity>
+
+        <a-entity position="4 0 0">
+          <a-gltf-model
+            id="tbl-mdl"
+            rotation="0 0 0"
+            src="#table"
+            position="0 0 0"
+          >
+          </a-gltf-model>
+
+          <a-entity obj-model="obj: #helmet-obj;" position="-1.5 1 -1.2" scale="0.004 0.004 0.004" rotation="-80 135 -45"></a-entity>
+
+
+
+
+
+          <a-asset-item id="mug" src="assets/models/mug.gltf"></a-asset-item>
+
+          <a-asset-item id="table" src="assets/models/table.gltf"></a-asset-item>
+  
+          <a-asset-item id="cup" src="assets/models/cup/scene.gltf" />
+  
+          <a-asset-item id="helmet-obj" src="assets/models/motorcycle.obj"></a-asset-item>
+  
+          <a-asset-item id="pregtest" src="assets/models/preg_test.obj"></a-asset-item>
+  
+          <a-asset-item id="passport" src="assets/models/passport.obj" ></a-asset-item>
+  
+  
+          <img id="ground" src="assets/images/floor.webp" />
+          <img id="skyTexture" src="assets/images/sky.webp" />
