@@ -116,7 +116,11 @@
             <a-entity id="alberto" position="-0.25 0.2 0.7">
   
                 <a-cylinder color="#fbba00" height="0.5" radius="0.2" position="0 0.2 -1">
-                    <a-gltf-model src="#alberto-passport" position="0 0.5 0" rotation="30 63 62"></a-gltf-model>
+                    <a-gltf-model src="#alberto-passport" position="0 0.5 0" rotation="30 60 62" 
+                      animation="property: rotation; to: 30 100 62; loop: true; dur: 20000;dir:alternate;"
+                      animation__2="property: position; to: 0 0.6 0; loop: true; dur: 10000;dir:alternate;"
+                      >
+                    </a-gltf-model>
                 </a-cylinder>
   
             </a-entity>
@@ -124,7 +128,14 @@
 
 
           <a-entity id="allison" position="0 0 -3">
-              <a-video src="#allison-video" width="1.6" height="1" position="0 1.5 0"></a-video>
+              <a-video src="#allison-video" width="1.6" height="1" position="0 2.5 0"></a-video>
+
+              <a-text
+                position="-0.825 1.575 0.0027"
+                width="2" 
+                value="Allison had her tubes tied after coming to the conclusion that she would never be well enough to look after children. Had her mental health not deteriorated and had she received the care and support she now has; she would have liked to consider having family.."></a-text>
+
+               
 
               <a-cylinder color="#fbba00" height="0.5" radius="0.2" position="0 0.2 0">
                   <a-gltf-model src="#allison-helmet" position="0 0.5 0" rotation="13 -30 34"></a-gltf-model>
@@ -133,6 +144,8 @@
               <a-cylinder color="#fbba00" height="0.5" radius="0.2" position="0.31 0.13 0.21">
                   <a-gltf-model src="#allison-test" position="0 0.5 0" rotation="13 -30 34"></a-gltf-model>
               </a-cylinder>
+
+
 
           </a-entity>
 
