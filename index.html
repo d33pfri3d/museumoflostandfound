@@ -58,8 +58,33 @@
         left: 0;
         height: 50%;
         width: 100%;
-        background: rgba(0,0,0,0.5);
+        background: rgba(139,85,157,0.8);
         z-index: 100;
+      }
+
+      #opening-screen img{
+        position: absolute;
+        left: 25%;
+        top: 25%;
+        transform: translate(50%, 0)
+      }
+
+
+
+      /* Mobile */
+
+
+      @media (max-width: 720px) {
+      
+        #opening-screen img{
+          width: 300px;
+          height: 100%;
+          position: absolute;
+          left: 15%;
+          top: 0;
+          transform: translate(0, 0)
+        }
+
       }
 
     </style>
@@ -83,7 +108,7 @@
 
 
     <div id="opening-screen">
-      <h1>Welcome to the Museum of Lost & Found Potential</h1>
+      <img src="assets/images/title.png" alt="">
       <button id="enter-button">Enter</button>
     </div>
 
