@@ -172,7 +172,7 @@
 
         <!-- Cecillia -->
 
-
+        <a-assets-item id="cecillia-card" src="assets/people/cecillia/card.glb"></a-assets-item>
 
         <!-- Deeksha -->
 
@@ -368,31 +368,77 @@
 
           <!-- Cecillia -->
 
-          <a-entity id="cecillia" position="-0.25 0.2 0.7">
-  
-            <a-cylinder color="#fbba00" height="0.5" radius="0.2" position="0 0.2 -1">
-        
-            </a-cylinder>
+          <a-entity id="cecillia" position="-3.950 -0.275 -5">
+
+            <a-light id="cecillia-light" position="0.355 1.317 1" type="spot" angle="180"></a-light>
+            
+            <a-entity id="cecillia-base">
+
+                <a-cylinder color="white">
+                    
+                    <a-entity id="cecillia-story-1" position="-0.71 1.42 0">
+                      <a-plane color="white">
+                        <a-text
+                          color="black"
+                          position="-0.45 0 0"
+                          wrap-count="26"
+                          width="0.8"
+                          value="Mental health was not originally part of the free healthcare system in Ghana and whilst Cecilia was going through early stages of bipolar disorder she was encouraged to seek traditional healing methods, which even included drinking her own urine. She is part of a team who are changing attitudes in her country, including bringing mental health into the healthcare system.">
+                        </a-text>
+                        <a-cylinder position="0 -0.785 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                      </a-plane>
+
+                      <a-gltf-model src="#cecillia-card" position="0.227 -0.6  0.5" rotation="10 -50 -11" scale="0.8 0.8 0.8"></a-gltf-model>
+
+                    </a-entity>
+
+                    
+                  </a-cylinder>
+
+
+            </a-entity>
+            
 
           </a-entity>
 
-        <a-entity id="deeksha" position="-1.4 0.025 -0.414">
-          
-            <a-text
-            position="-0.465 0.842 -0.728"
-            rotation="0 36.2 0"
-            width="1.1" 
-            value="Bullying drove Deeksha to overeating. She was told by her dance instructor that she could not continue with her dancing lessons due to her weight. The stigma was devastating. These professional jazz dance shoes belong to a Deeksha who continued her lessons and is able to dance the night away.">
-          </a-text>
 
+          <!-- Deeksha -->
+
+          <a-entity id="deeksha" position="-9.2 0.025 -15">
+
+              <a-light id="deeksha-light" position="0.355 1.317 1" type="spot" angle="180"></a-light>
+              
+              <a-entity id="deeksha-base">
   
-          <a-cylinder color="#fbba00" height="0.5" radius="0.2" position="0 0.2 -1">
+                  <a-cylinder color="white">
+                      
+                      <a-entity id="deeksha-story-1" position="-0.71 1.42 0">
+                        <a-plane color="white">
+                          <a-text
+                            color="black"
+                            position="-0.45 0 0"
+                            wrap-count="26"
+                            width="0.8"
+                            value="Bullying drove Deeksha to overeating. She was told by her dance instructor that she could not continue with her dancing lessons due to her weight. The stigma was devastating. These professional jazz dance shoes belong to a Deeksha who continued her lessons and is able to dance the night away.">
+                          </a-text>
+                          <a-cylinder position="0 -0.785 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                        </a-plane>
+  
+                        <a-gltf-model src="#deeksha-shoes" position="0 -0.85 0" rotation="10 -50 -11"></a-gltf-model>
+  
+                      </a-entity>
+  
+                      
+                    </a-cylinder>
+  
+  
+              </a-entity>
+              
+  
+            </a-entity>
 
-              <a-gltf-model src="#deeksha-shoes" position="0 0.35 0" rotation="10 -50 -11"></a-gltf-model>
         
-          </a-cylinder>
-
-        </a-entity>
+        <!-- Florence -->
 
 
         <a-entity id="florence" position="-0.25 0.2 0.7">
