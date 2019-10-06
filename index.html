@@ -226,33 +226,52 @@
       <a-entity environment="skyType:gradient;skyColor:#404A9A;ground:hills;groundTexture:walkernoise;dressing: apparatus;lighting:none;"> 
         <a-entity position="0 0 0">
 
-            <a-entity id="alberto" position="-4 0.2 0.7" rotation="0 90 0">
+            <a-entity id="alberto" position="-10 -0.05 -3.26" rotation="0 90 0">
 
-              <a-light id="alberto-light" position="0.355 1.317 0.764" type="spot"></a-light>
-
-              <a-text
-                position="-0.527 1.019 -1.003"
-                width="1.1" 
-                value="Alberto’s depression was at its hardest when he lost his brother in a car accident. He spent many years at home in Buenos Aires unable to work and live the life he imagined. This includes traveling the world, this passport shows the places Alberto would have gone if the right treatment was there from the start.">
-              </a-text>
+              <a-light id="alberto-light" position="0.355 1.317 1" type="spot" angle="180"></a-light>  
   
-                <a-cylinder color="#fbba00" height="0.5" radius="0.2" position="0 0.2 -1">
-                    <a-gltf-model src="#alberto-passport" position="0 0.5 0" rotation="30 60 62"
-                      >
-                    </a-gltf-model>
-                </a-cylinder>
+              <a-entity id="alberto-base">
+                <a-cylinder color="white">
+                  
+                  
+                  <a-entity id="alberto-story-1">
+                    <a-plane color="white" position="-0.644 1.313 0" height="0.8" width="1">
+                        <a-text
+                        color="black"
+                        position="-0.45 0 0"
+                        wrap-count="26"
+                        width="0.8" 
+                        value="Alberto’s depression was at its hardest when he lost his brother in a car accident. He spent many years at home in Buenos Aires unable to work and live the life he imagined. This includes traveling the world, this passport shows the places Alberto would have gone if the right treatment was there from the start.">
+                      </a-text>
+                      <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                    </a-plane>
 
-                <a-text
-                  position="0.623 0.074 -1.003"
-                  width="1.1" 
-                  value="In Alberto’s newfound support role with Proyecto Suma, a mental health organisation in Argentina, through working with peers he recognises that isolation can be a major issue, even in major cities. He often takes people out for a coffee in the bustling city of Buenos Aires, using an informal environment to attempt to build a bond.">
-                </a-text>
+                    <a-gltf-model src="#alberto-passport" position="-0.623 0.657 0.25" rotation="30 60 62"></a-gltf-model>
+                  </a-entity>
+  
+  
+  
+                  <a-entity id="alberto-story-2" position="0.7 1.255 0.285" height="0.8" width="1">
+                      <a-plane color="white" height="0.62">
+                          <a-text
+                          color="black"
+                          position="-0.45 0 0"
+                          wrap-count="26"
+                          width="0.8" 
+                          value="In Alberto’s newfound support role with Proyecto Suma, a mental health organisation in Argentina, through working with peers he recognises that isolation can be a major issue, even in major cities. He often takes people out for a coffee in the bustling city of Buenos Aires, using an informal environment to attempt to build a bond.">
+                        </a-text>
+    
+                        <a-cylinder position="0 -0.785 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                      </a-plane>
 
-                <a-cylinder color="#fbba00" height="0.5" radius="0.2" position="0.380 0 -1.081">
-                    <a-gltf-model src="#alberto-coffee" position="0 0.3 0" rotation="0 0 0  "
-                      >
-                    </a-gltf-model>
+                      <a-gltf-model src="#alberto-coffee" position="-0.2 -0.7 0" rotation="0 0 0"></a-gltf-model>
+                    </a-entity>
+                  
+                
                 </a-cylinder>
+              </a-entity>
+
+              
   
             </a-entity>
 
