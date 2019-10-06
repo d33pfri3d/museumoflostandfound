@@ -3,12 +3,15 @@
   <head>
     <title>Museum of Lost and Found</title>
     <meta name="description" content="A-Frame" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+    <script src="scripts/aframe-x.min.js"></script>
+    <script src="scripts/aframe-sky.min.js"></script>
     <script src="scripts/camera-detect.js"></script>
-    <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+    <script src="scripts/pinch-to-move.js"></script>
+    <!-- <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script> -->
 
     <!-- 
-      
       Some Notes:
       Blue : #404A9A
       Purp : #8b559d
@@ -16,6 +19,13 @@
     -->
 
     <style>
+
+      .loading-curtain{
+        background: white;
+        position: absolute;
+        top:0;left:0;right:0;bottom:0;
+        z-index: 10;
+      }
       
       .pledge-link{
         position:absolute;
@@ -69,19 +79,37 @@
         transform: translate(50%, 0)
       }
 
+      #opening-screen button{
+        background: none;
+        color: white;
+        position: absolute;
+        width: 200px;
+        height: 40px;
+        left: 50%;
+        margin-left: -100px;
+        bottom: 20px;
+        font-size: 28px;
+        border: none;
+      }
+
+      #opening-screen button:hover{
+        cursor: pointer;
+      }
+
 
 
       /* Mobile */
 
 
-      @media (max-width: 720px) {
+      @media (max-width: 960px) {
       
         #opening-screen img{
           width: 300px;
-          height: 100%;
           position: absolute;
-          left: 15%;
-          top: 0;
+          left:50%;
+          margin-left: -150px;
+          top: 50%;
+          margin-top: -100px;
           transform: translate(0, 0)
         }
 
@@ -107,16 +135,28 @@
     </div>
 
 
+    <div class="loading-curtain"></div>
+
+
     <div id="opening-screen">
       <img src="assets/images/title.png" alt="">
       <button id="enter-button">Enter</button>
     </div>
 
     <a-scene >
+        <a-entity id="cam" camera tilt-turn twoway-motion="nonMobileLoad: falsw; chatty: true;" position="0 1.6 0" wasd-controls look-controls>
+            <a-cursor scale="2 2 2" color="white" opacity="0.3">
+            </a-cursor>
+        </a-entity>
       <a-assets>
+
+        <img id="ground" src="assets/images/floor.jpg">
+
+        <!-- Speaker -->
 
         <!-- ALberto -->
         <a-assets-item id="alberto-passport" src="assets/people/alberto/passport.glb"></a-assets-item>
+        <a-assets-item id="alberto-coffee" src="assets/people/alberto/coffee.glb"></a-assets-item>
 
         <!-- Allison -->
         <a-assets-item id="allison-helmet" src="assets/people/allison/motorcycle.glb">
@@ -145,6 +185,7 @@
         <!-- Jazz -->
 
         <!-- Joshua -->
+        <a-assets-item id="joshua-rice" src="assets/people/joshua/rice_cups.glb"></a-assets-item>
 
         <!-- Kamala -->
         <video id="kamala-video" autoplay loop="true" src="assets/people/kamala/Kamala (ONLY HANDS).mp4"></video>
@@ -165,24 +206,42 @@
 
       </a-assets>
 
-      <a-entity camera tracked-controls look-controls wasd-controls position="0.5 1.2 1">
-      </a-entity>
+      <a-light></a-light>
+      
+      <!-- <a-entity id="rig" >
+        <a-entity camera tracked-controls look-controls wasd-controls two-way="speed: 50; threshold: -20" position="0 1.6 0"></a-entity>
+      </a-entity> -->
 
-      <a-entity environment="skyType:gradient;skyColor:#404A9A;groundTexture: none; fog: 0.5;groundColor:#404A9A;groundColor2:#8b559d;ground:noise;grid:xlines;gridColor:#404A9A;"> 
+      <!-- <a-plane
+        src="#ground"
+        rotation="-90 0 0"
+        height="100"
+        width="100"
+        repeat="100 100"
+        metalness=".3"
+      ></a-plane> -->
+
+      <a-entity environment="skyType:gradient;skyColor:#404A9A;ground:hills;groundTexture:walkernoise;dressing: apparatus;lighting:none;"> 
         <a-entity position="0 0 0">
 
-            <a-entity id="alberto" position="-0.25 0.2 0.7">
+            <a-entity id="alberto" position="-4 0.2 0.7" rotation="0 90 0">
+
+              <a-light></a-light>
 
               <a-text
                 position="-0.527 1.019 -1.003"
                 width="1.1" 
                 value="Alberto’s depression was at its hardest when he lost his brother in a car accident. He spent many years at home in Buenos Aires unable to work and live the life he imagined. This includes traveling the world, this passport shows the places Alberto would have gone if the right treatment was there from the start.">
-            </a-text>
+              </a-text>
   
                 <a-cylinder color="#fbba00" height="0.5" radius="0.2" position="0 0.2 -1">
-                    <a-gltf-model src="#alberto-passport" position="0 0.5 0" rotation="30 60 62" 
-                      animation="property: rotation; to: 30 100 62; loop: true; dur: 20000;dir:alternate;"
-                      animation__2="property: position; to: 0 0.6 0; loop: true; dur: 10000;dir:alternate;"
+                    <a-gltf-model src="#alberto-passport" position="0 0.5 0" rotation="30 60 62"
+                      >
+                    </a-gltf-model>
+                </a-cylinder>
+
+                <a-cylinder color="#fbba00" height="0.5" radius="0.2" position="0 0.2 -1">
+                    <a-gltf-model src="#alberto-coffee" position="0 0.3 0" rotation="0 0 0  "
                       >
                     </a-gltf-model>
                 </a-cylinder>
@@ -298,10 +357,10 @@
 
         </a-entity>
 
-        <a-entity id="joshua" position="-2.8 0.2 -4.3">
+        <a-entity id="joshua" position="-6.2 0.2 -9.4">
   
           <a-cylinder color="#fbba00" height="0.5" radius="0.2" position="0 0.2 -1">
-        
+              <a-gltf-model src="#joshua-rice" position="0 0.35 0" rotation="10 -50 -11" scale="0.5 0.5 0.5"></a-gltf-model>
           </a-cylinder>
 
         </a-entity>
@@ -384,6 +443,7 @@
 
     <script>
       let opening = document.getElementById("opening-screen");
+      let curtain = document.querySelector(".loading-curtain");
       let enterButton = document.getElementById("enter-button");
       let video = document.getElementById('allison-video');
       let video2 = document.getElementById('graeme-video');
@@ -391,10 +451,11 @@
 
 
       enterButton.onclick = () => {
-        video.play();
-        video2.play();
-        video3.play();
+        video.play(); video.pause();
+        video2.play(); video2.pause();
+        video3.play(); video3.pause();
         opening.style.display = 'none';
+        curtain.style.display = 'none';
       }
     
     </script>
