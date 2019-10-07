@@ -191,6 +191,9 @@
 
         <!-- Kamala -->
         <video id="kamala-video" autoplay loop="true" src="assets/people/kamala/Kamala (ONLY HANDS).mp4"></video>
+        <a-assets-item id="kamala-flashlight" src="assets/people/kamala/flashlight.glb"></a-assets-item>
+        <a-assets-item id="kamala-notebook" src="assets/people/kamala/notebook.glb"></a-assets-item>
+        
         <!-- Mary -->
 
         <!-- Michelle -->
@@ -202,26 +205,11 @@
 
         <!-- Sodikin -->
 
-
         <!-- Timiebi -->
+        <a-assets-item id="timiebi-machine" src="assets/people/timiebi/story_machine.obj"></a-assets-item>
 
 
       </a-assets>
-
-      <a-light></a-light>
-      
-      <!-- <a-entity id="rig" >
-        <a-entity camera tracked-controls look-controls wasd-controls two-way="speed: 50; threshold: -20" position="0 1.6 0"></a-entity>
-      </a-entity> -->
-
-      <!-- <a-plane
-        src="#ground"
-        rotation="-90 0 0"
-        height="100"
-        width="100"
-        repeat="100 100"
-        metalness=".3"
-      ></a-plane> -->
 
       <a-entity environment="skyType:gradient;skyColor:#404A9A;ground:hills;groundTexture:walkernoise;dressing: apparatus;lighting:none;"> 
         <a-entity position="0 0 0">
@@ -274,6 +262,9 @@
               
   
             </a-entity>
+
+
+          <!-- Allison -->
 
 
 
@@ -334,6 +325,8 @@
             
           </a-entity>
 
+
+          <!-- Bill -->
 
 
 
@@ -461,105 +454,212 @@
 
 
         <a-entity id="florence" position="-0.25 0.2 0.7">
-  
-          <a-cylinder color="#fbba00" height="0.5" radius="0.2" position="0 0.2 -1">
-        
-          </a-cylinder>
 
         </a-entity>
 
-        <a-entity id="graeme" position="-1.6 0.2 -3.77">
-            <a-video src="#graeme-video" width="0.6" height="0.5" position="0 1.1 -1"></a-video>
+
+        <!-- Graeme -->
+
+        <a-entity id="graeme" position="-1.6  0.2 -12.5">
+          
+            <a-entity id="graeme-base">
+
+                <a-entity id="graeme-videostand" position="0 1.2 0">
+                    <a-plane height="0.8" width="1.2" color="white" position="0 1 0">
+                        <a-video src="#graeme-video" width="1" height="0.6" position="0 0 0.02"></a-video>
+                    </a-plane>
+                    <a-cylinder color="white" height="2" radius="0.02">
+                    </a-cylinder>
+                  </a-entity>
+
+                <a-cylinder color="white">
+                  
+                  <a-entity id="graeme-story-1">
+                    <a-plane color="white" position="-0.644 1.313 0" height="0.8" width="1">
+                        <a-text
+                        color="black"
+                        position="-0.45 0 0"
+                        wrap-count="26"
+                        width="0.8" 
+                        value="Graeme fell out of a tree and broke his back when he was 13. Up until then he had been very active, playing badminton regularly with friends. All of this stopped and while stuck at home Graeme began to experience depression and a new, lonely world away from physical activity. Had he not lost confidence in his body, he would have lifted this racket high above his head.">
+                      </a-text>
   
-          <a-cylinder color="#fbba00" height="0.5" radius="0.2" position="0 0.2 -1">
-        
-          </a-cylinder>
+                      <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                    </a-plane>
+
+                    <a-gltf-model src="#graeme-racket" position="-0.6 0.662 0.7" rotation="10 -50 -11"></a-gltf-model>
+
+                  </a-entity>                 
+                
+                </a-cylinder>
+              </a-entity>
 
         </a-entity>
+
+
+        <!-- Jazz -->
 
         <a-entity id="jazz" position="1 0.2 -3">
-  
-          <a-cylinder color="#fbba00" height="0.5" radius="0.2" position="0 0.2 -1">
-        
-          </a-cylinder>
-
-        </a-entity>
-
-        <a-entity id="joshua" position="-6.2 0.2 -9.4">
-  
-          <a-cylinder color="#fbba00" height="0.5" radius="0.2" position="0 0.2 -1">
-              <a-gltf-model src="#joshua-rice" position="0 0.35 0" rotation="10 -50 -11" scale="0.5 0.5 0.5"></a-gltf-model>
-          </a-cylinder>
 
         </a-entity>
 
 
-        <a-entity id="kamala" position="2.6 0.2 -2.7">
+        <!-- Joshua -->
 
+        <a-entity id="joshua" position="-6.2 -0.1 -9.4">
 
+            <a-entity id="joshua-base">
+
+                <a-cylinder color="white">
+                  
+                  <a-entity id="joshua-story-1">
+                    <a-plane color="white" position="-0.644 1.313 0" height="0.8" width="1">
+                        <a-text
+                        color="black"
+                        position="-0.45 0 0"
+                        wrap-count="26"
+                        width="0.8" 
+                        value="Joshua grew up in a very poor area of Sierra Leone. As a young child, he was sent out to buy these precious 2 cups of rice, barely enough for a family meal but all they could afford. He became overwhelmed when he lost the money. It was then he had his first suicidal thoughts, feeling that taking his life would be easier than letting down his family.">
+                      </a-text>
   
-          <a-cylinder color="#fbba00" height="0.5" radius="0.2" position="0 0.2 -1">
-        
-          </a-cylinder>
+                      <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                    </a-plane>
+
+                    <a-gltf-model src="#joshua-rice" position="-0.6 0.66 0.7" rotation="10 -50 -11" scale="0.5 0.5 0.5"></a-gltf-model>
+
+                  </a-entity>                 
+                
+                </a-cylinder>
+              </a-entity>
 
         </a-entity>
+
+        <!-- Kamala -->
+
+
+        <a-entity id="kamala" position="7.83 0.2 -11">
+
+            <a-entity id="kamala-base">
+
+              <a-entity id="kamala-videostand" position="0 1.2 0">
+                <a-plane height="0.8" width="1.2" color="white" position="0 1 0">
+                  <a-video src="#kamala-video" width="1" height="0.6" position="0 0 0.02"></a-video>
+                </a-plane>
+                <a-cylinder color="white" height="2" radius="0.02"></a-cylinder>
+              </a-entity>
+
+              <a-cylinder color="white">
+                  
+                <a-entity id="kamala-story-1">
+                  <a-plane color="white" position="-0.644 1.313 0" height="0.8" width="1">
+                      <a-text
+                      color="black"
+                      position="-0.45 0 0"
+                      wrap-count="26"
+                      width="0.8" 
+                      value="Kamala thanks to the care of Koshish is now able to see the beauty of her country, Nepal. Something she wishes she could have found sooner. She finds the beauty so inspiring that had she seen it before she would have written songs surrounded by the mountains and valleys.
+                      ">
+                    </a-text>
+
+                    <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                  </a-plane>
+
+                  <a-gltf-model src="#kamala-flashlight" position="-0.6 0.66 0.7" rotation="10 -50 -11" scale="0.5 0.5 0.5"></a-gltf-model>
+                  <a-gltf-model src="#kamala-notebook" position="-0.6 0.66 0.7" rotation="10 -50 -11" scale="0.5 0.5 0.5"></a-gltf-model>
+
+                </a-entity>
+                
+              </a-cylinder>
+            
+            </a-entity>
+
+        </a-entity>
+
+        <!-- Mary -->
 
         <a-entity id="mary" position="-0.25 0.2 0.7">
-  
-          <a-cylinder color="#fbba00" height="0.5" radius="0.2" position="0 0.2 -1">
-        
-          </a-cylinder>
 
         </a-entity>
+
+
+        <!-- Michelle -->
 
         <a-entity id="michelle" position="-0.25 0.2 0.7">
-  
-          <a-cylinder color="#fbba00" height="0.5" radius="0.2" position="0 0.2 -1">
-        
-          </a-cylinder>
 
         </a-entity>
+
+
+        <!-- Paula -->
 
         <a-entity id="paula" position="-0.25 0.2 0.7">
-  
-          <a-cylinder color="#fbba00" height="0.5" radius="0.2" position="0 0.2 -1">
-        
-          </a-cylinder>
 
         </a-entity>
 
 
-        <a-entity id="rachel" position="1.712 0.2 -2.259">
+        <!-- Rachel -->
 
-            <a-video src="#rachel-video" width="0.6" height="0.5" position="0 1.1 -1"></a-video>
 
-  
-          <a-cylinder color="#fbba00" height="0.5" radius="0.2" position="0 0.2 -1">
-        
-          </a-cylinder>
+        <a-entity id="rachel" position="1.712 0.2 -25">
+
+
+          <a-entity id="rachel-base">
+
+              <a-entity id="rachel-videostand" position="0 1.2 0">
+                <a-plane height="0.8" width="1.2" color="white" position="0 1 0">
+                  <a-video src="#rachel-video" width="1" height="0.6" position="0 0 0.02"></a-video>
+                </a-plane>
+                <a-cylinder color="white" height="2" radius="0.02"></a-cylinder>
+              </a-entity>
+
+              <a-cylinder color="white">
+                  
+                <a-entity id="rachel-story-1">
+
+                </a-entity>
+                
+              </a-cylinder>
+            
+            </a-entity>
 
         </a-entity>
 
+        <!-- Sodkin -->
 
         <a-entity id="sodikin" position="-0.25 0.2 0.7">
-  
-          <a-cylinder color="#fbba00" height="0.5" radius="0.2" position="0 0.2 -1">
-        
-          </a-cylinder>
-
-        </a-entity>
-
-        <a-entity id="timiebi" position="-0.25 0.2 0.7">
-  
-          <a-cylinder color="#fbba00" height="0.5" radius="0.2" position="0 0.2 -1">
-        
-          </a-cylinder>
 
         </a-entity>
 
 
+        <!-- TIMIEBI -->
 
-          
+        <a-entity id="timiebi" position="-0.25 -0.3 -20.7">
+  
+          <a-entity id="timiebi-base">
+
+              <a-cylinder color="white">
+                  
+                <a-entity id="timiebi-story-1">
+                  <a-plane color="white" position="-0.644 0.96 0" height="0.8" width="1">
+                      <a-text
+                      color="black"
+                      position="-0.45 0 0"
+                      wrap-count="26"
+                      width="0.8"
+                      value="Timiebi was hoping to complete her studies in London, unfortunately she was unable to and she returned to Nigeria concerned that her lack of Masters degree would affect her chances of pursuing a career in social media. Here is the dissertation she would have completed, The Impact of Social Media Marketing and Customer Engagement on Small Businesses in Nigeria, had her depression not got in the way.">
+                    </a-text>
+
+                    <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                  </a-plane>
+
+                  <a-obj-model src="#timiebi-machine" position="-0.8 0.66 -0.6" scale="0.001 0.001 0.001"></a-obj-model>
+
+                </a-entity>
+                
+              </a-cylinder>
+            
+            </a-entity>
+
+        </a-entity>
           
         </a-entity>
       </a-entity>
