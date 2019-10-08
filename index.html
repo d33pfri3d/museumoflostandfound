@@ -59,6 +59,16 @@
 
       .mobile-controls{
         position:absolute;
+        z-index: 999;
+        bottom: 30px;
+        left: 30px;
+      }
+
+      .mobile-controls button{
+        background: rgba(0,0,0,0.5);
+        color: white;
+        font-size: 50px;
+        border:none;
       }
 
 
@@ -129,9 +139,8 @@
     </div>
 
     <div class="mobile-controls">
-      <button>
-        Forwards
-      </button>
+      <button id="forward">⬆</button>
+      <button id="backwards">⬇</button> 
     </div>
 
 
@@ -145,7 +154,7 @@
 
     <a-scene >
         
-      <a-entity id="cam" camera tilt-turn twoway-motion="nonMobileLoad: false; chatty: true;" position="0 1.6 0" wasd-controls look-controls>
+      <a-entity id="cam" camera position="0 1.6 0" wasd-controls look-controls>
             <a-cursor scale="2 2 2" color="white" opacity="0.3">
             </a-cursor>
       </a-entity>
@@ -163,7 +172,7 @@
         <!-- Allison -->
         <a-assets-item id="allison-helmet" src="assets/people/allison/motorcycle.glb">
         <a-assets-item id="allison-test" src="assets/people/allison/preg_test.glb"></a-assets-item>
-        <video id="allison-video" autoplay loop="true" src="assets/people/allison/Allison.mp4"></video>
+        <video id="allison-video" loop="true" src="assets/people/allison/Allison.mp4"></video>
 
 
         <!-- Bill -->
@@ -181,7 +190,7 @@
         <!-- Florence -->
 
         <!-- Graeme -->
-        <video id="graeme-video" autoplay loop="true" src="assets/people/graeme/Graeme.mp4"></video>
+        <video id="graeme-video" loop="true" src="assets/people/graeme/Graeme.mp4"></video>
         <a-assets-item id="graeme-racket" src="assets/people/graeme/racket.glb"></a-assets-item>
 
         <!-- Jazz -->
@@ -190,7 +199,7 @@
         <a-assets-item id="joshua-rice" src="assets/people/joshua/rice_cups.glb"></a-assets-item>
 
         <!-- Kamala -->
-        <video id="kamala-video" autoplay loop="true" src="assets/people/kamala/Kamala (ONLY HANDS).mp4"></video>
+        <video id="kamala-video" loop="true" src="assets/people/kamala/Kamala (ONLY HANDS).mp4"></video>
         <a-assets-item id="kamala-flashlight" src="assets/people/kamala/flashlight.glb"></a-assets-item>
         <a-assets-item id="kamala-notebook" src="assets/people/kamala/notebook.glb"></a-assets-item>
         
@@ -201,7 +210,7 @@
         <!-- Paula -->
 
         <!-- Rachel -->
-        <video id="rachel-video" autoplay loop="true" src="assets/people/rachel/Rachel.mp4"></video>
+        <video id="rachel-video" loop="true" src="assets/people/rachel/Rachel.mp4"></video>
 
         <!-- Sodikin -->
 
@@ -234,7 +243,7 @@
                       <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
                     </a-plane>
 
-                    <a-gltf-model src="#alberto-passport" position="-0.623 0.657 0.25" rotation="30 60 62"></a-gltf-model>
+                    <a-gltf-model src="#alberto-passport" position="-0.623 0.8 0.25" rotation="30 60 62" scale="2 2 2"></a-gltf-model>
                   </a-entity>
   
   
@@ -252,7 +261,7 @@
                         <a-cylinder position="0 -0.785 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
                       </a-plane>
 
-                      <a-gltf-model src="#alberto-coffee" position="-0.2 -0.7 0" rotation="0 0 0"></a-gltf-model>
+                      <a-gltf-model src="#alberto-coffee" position="-0.2 -0.62 0" rotation="0 0 0" scale="2 2 2"></a-gltf-model>
                     </a-entity>
                   
                 
@@ -269,6 +278,7 @@
 
 
           <a-entity id="allison" position="0 0 -3">
+
               <a-light id="allison-light" position="0.355 1.317 1" type="spot" angle="180"></a-light>
               
               <a-entity id="allison-videostand" position="0 1.2 0">
@@ -315,9 +325,9 @@
                     </a-plane>
                   </a-entity>
                
-                <a-gltf-model src="#allison-helmet" position="-0.5 0.6 0.39" rotation="13 -30 34"></a-gltf-model>
+                <a-gltf-model src="#allison-helmet" position="-0.5 0.6 0.39" rotation="13 -30 34" scale="1.5 1.5 1.5"></a-gltf-model>
                
-                <a-gltf-model src="#allison-test" position="0.4 0.745 0.39" rotation="13 -30 34" scale="2 2 2"></a-gltf-model>
+                <a-gltf-model src="#allison-test" position="0.4 0.745 0.39" rotation="55 -118 -127" scale="3 3 3"></a-gltf-model>
                 
               
               </a-cylinder>
@@ -349,7 +359,7 @@
                         <a-cylinder position="0 -0.785 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
                       </a-plane>
 
-                      <a-gltf-model src="#bill-radio" position="0 -0.830 0.4" rotation="1.7 -11 -7.7"></a-gltf-model>
+                      <a-gltf-model src="#bill-radio" position="0 -0.830 0.4" rotation="1.7 -11 -7.7" scale="2 2 2"></a-gltf-model>
                     </a-entity>
 
 
@@ -366,7 +376,7 @@
                             <a-cylinder position="0 -0.785 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
                           </a-plane>
                           
-                          <a-gltf-model src="#bill-taxi" position="0 -0.835 0.4" rotation="10 -50 -11"></a-gltf-model>
+                          <a-gltf-model src="#bill-taxi" position="0 -0.777 0.4" rotation="10 -50 -11" scale="2 2 2"></a-gltf-model>
                     </a-entity>
                     
               
@@ -564,8 +574,8 @@
                     <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
                   </a-plane>
 
-                  <a-gltf-model src="#kamala-flashlight" position="-0.6 0.66 0.7" rotation="10 -50 -11" scale="0.5 0.5 0.5"></a-gltf-model>
-                  <a-gltf-model src="#kamala-notebook" position="-0.6 0.66 0.7" rotation="10 -50 -11" scale="0.5 0.5 0.5"></a-gltf-model>
+                  <a-gltf-model src="#kamala-flashlight" position="-0.6 0.66 0.7" rotation="10 -50 -11" scale="2 2 2"></a-gltf-model>
+                  <a-gltf-model src="#kamala-notebook" position="-0.6 0.66 0.7" rotation="10 -50 -11" scale="2 2 2"></a-gltf-model>
 
                 </a-entity>
                 
@@ -676,15 +686,72 @@
       let video = document.getElementById('allison-video');
       let video2 = document.getElementById('graeme-video');
       let video3 = document.getElementById('rachel-video');
+      let camera = document.querySelector("[camera]");
 
 
       enterButton.onclick = () => {
-        video.play(); video.pause();
-        video2.play(); video2.pause();
-        video3.play(); video3.pause();
+        // video.play(); video.pause();
+        // video2.play(); video2.pause();
+        // video3.play(); video3.pause();
         opening.style.display = 'none';
         curtain.style.display = 'none';
       }
+
+      // Mobile controls
+
+      let fwd = document.getElementById("forward");
+      let bk = document.getElementById("backwards");
+
+      let mvfwd = ()=> {
+        camera.components["wasd-controls"].keys["ArrowUp"] = true;
+      }
+
+      let stop = () => {
+        camera.components["wasd-controls"].keys["ArrowDown"] = false;
+        camera.components["wasd-controls"].keys["ArrowUp"] = false;
+      }
+
+      let mvbk = () => {
+        camera.components["wasd-controls"].keys["ArrowDown"] = true;
+      }
+
+      fwd.addEventListener("touchstart", (evt) => {
+        evt.preventDefault();
+        mvfwd();
+      })
+
+      fwd.addEventListener("touchend", (evt) => {
+        evt.preventDefault();
+        stop();
+      })
+
+      fwd.addEventListener("mousedown", (evt) => {
+        mvfwd();
+      })
+
+      fwd.addEventListener("mouseup", (evt) => {
+        stop();
+      })
+
+      bk.addEventListener("touchstart", (evt) => {
+        evt.preventDefault();
+        mvbk();
+      })
+
+      bk.addEventListener("touchend", (evt) => {
+        evt.preventDefault();
+        stop();
+      })
+
+      bk.addEventListener("mousedown", (evt) => {
+        evt.preventDefault();
+        mvbk();
+      })
+
+      bk.addEventListener("mouseup", (evt) => {
+        evt.preventDefault();
+        stop();
+      })
     
     </script>
   </body>
