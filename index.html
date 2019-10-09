@@ -200,16 +200,17 @@
 
         <!-- Joshua -->
         <a-assets-item id="joshua-rice" src="assets/people/joshua/rice_cups.glb"></a-assets-item>
+        <a-assets-item id="joshua-stick" src="assets/people/joshua/Walkingstick.glb"></a-assets-item>
 
         <!-- Kamala -->
         <video id="kamala-video" loop="true" src="assets/people/kamala/Kamala (ONLY HANDS).mp4"></video>
         <a-assets-item id="kamala-flashlight" src="assets/people/kamala/flashlight.glb"></a-assets-item>
         <a-assets-item id="kamala-notebook" src="assets/people/kamala/notebook.glb"></a-assets-item>
 
-        <a-assets-item id="kamala-plane-obj" src="assets/people/kamala/PaperPlane.obj"></a-assets-item>
-        <a-assets-item id="kamala-plane-mtl" src="assets/people/kamala/PaperPlane.mtl"></a-assets-item>
+        <a-assets-item id="kamala-plane" src="assets/people/kamala/plane-low.glb"></a-assets-item>
         
         <!-- Mary -->
+        <a-assets-item id="mary-boat" src="assets/people/mary/paperboat.glb"></a-assets-item>
 
         <!-- Michelle -->
 
@@ -653,7 +654,25 @@
 
                     <a-gltf-model src="#joshua-rice" position="-0.6 0.66 0.7" rotation="10 -50 -11" scale="0.5 0.5 0.5"></a-gltf-model>
 
-                  </a-entity>                 
+                  </a-entity>
+                  
+                  
+                  <a-entity id="joshua-story-2" position="1.088 0 0">
+                      <a-plane color="white" position="-0.644 1.313 0" height="0.8" width="1">
+                          <a-text
+                          color="black"
+                          position="-0.45 0 0"
+                          wrap-count="26"
+                          width="0.8" 
+                          value="The walking stick for Joshua is a metaphor for openness, visibility and honesty. When people are able to talk about their mental health, people see the walking stick, in turn helping to make any workplace supportive.">
+                        </a-text>
+    
+                        <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                      </a-plane>
+  
+                      <a-gltf-model src="#joshua-stick" position="-0.745 0.742 0.7" rotation="0 0 -70" scale="1 1 1"></a-gltf-model>
+  
+                    </a-entity>
                 
                 </a-cylinder>
               </a-entity>
@@ -709,7 +728,7 @@
                       <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
                     </a-plane>
   
-                    <a-obj-model src="#kamala-plane-obj" mtl="#kamala-plane-mtl" rotation="0 -55 0.9" position="0 1 0.7" scale="0.2 0.2 0.2"></a-obj-model>
+                    <a-gltf-model src="#kamala-plane" rotation="56 -95 -24" position="-1.067 0.202 0.9" scale="0.5 0.5 0.5"></a-gltf-model>
   
                   </a-entity>
                 
@@ -721,8 +740,30 @@
 
         <!-- Mary -->
 
-        <a-entity id="mary" position="-0.25 0.2 0.7">
+        <a-entity id="mary" position="12.3 0.2 -5.916">
+            <a-entity id="mary-base">
 
+                <a-cylinder color="white">
+                    
+                  <a-entity id="mary-story-1">
+                    <a-plane color="white" position="-0.644 1.313 0" height="0.8" width="1">
+                        <a-text
+                        color="black"
+                        position="-0.45 0 0"
+                        wrap-count="26"
+                        width="0.8" 
+                        value="Mary had a passion for poetry and art. She wrote poetry only related to mental health and her artwork related to the life cycle of the butterfly. Her parents discovered the extent of her love after she died by suicide. On the front cover of Shaun Tan’s “The Red Tree” sits a little girl in a paper boat, alone drifting through the world.">
+                      </a-text>
+  
+                      <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                    </a-plane>
+  
+                    <a-gltf-model src="#mary-boat" position="1.952 2 -0.118" rotation="90 0 0" scale="30 30 30"></a-gltf-model>
+  
+                  </a-entity>                  
+                </a-cylinder>
+
+            </a-entity>
         </a-entity>
 
 
