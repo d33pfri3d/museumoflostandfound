@@ -228,6 +228,8 @@
 
 
         <!-- Sodikin -->
+        <a-assets-item id="sodikin-chain" src="assets/people/sodikin/chain.glb"></a-assets-item>
+
 
         <!-- Timiebi -->
         <a-assets-item id="timiebi-machine" src="assets/people/timiebi/story_machine.obj"></a-assets-item>
@@ -927,7 +929,32 @@
 
         <!-- Sodkin -->
 
-        <a-entity id="sodikin" position="-0.25 0.2 0.7">
+        <a-entity id="sodikin" position="4 -0.213 -28.35">
+
+            <a-entity id="sodikin-base">
+
+                <a-cylinder color="white">
+                    
+                  <a-entity id="sodikin-story-1">
+                    <a-plane color="white" position="-0.644 0.96 0" height="0.8" width="1">
+                        <a-text
+                        color="black"
+                        position="-0.45 0 0"
+                        wrap-count="26"
+                        width="0.8"
+                        value="Sodikin spent over eight years locked in a shed, fed through a hole, simply because he has a mental health condition and his family didn’t know what else to do. Since being found by Human Rights Watch, Sodikin is now the main breadwinner for the family and living a full life.">
+                      </a-text>
+  
+                      <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                    </a-plane>
+  
+                    <a-gltf-model src="#sodikin-chain" position="0.279 1.018 0.453" scale="0.3 0.3 0.3"></a-gltf-model>
+  
+                  </a-entity>
+                  
+                </a-cylinder>
+              
+              </a-entity>
 
         </a-entity>
 
