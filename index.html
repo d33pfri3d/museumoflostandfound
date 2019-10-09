@@ -222,6 +222,10 @@
 
         <!-- Rachel -->
         <video id="rachel-video" loop="true" src="assets/people/rachel/Rachel.mp4"></video>
+        
+        <a-assets-item id="rachel-leg" src="assets/people/rachel/Leg-low.glb"></a-assets-item>
+        <a-assets-item id="rachel-telescope" src="assets/people/rachel/telescope.gltf"></a-assets-item>
+
 
         <!-- Sodikin -->
 
@@ -865,24 +869,55 @@
 
         <!-- Rachel -->
 
-
-        <a-entity id="rachel" position="1.712 0.2 -25">
-
+        <a-entity id="rachel" position="-14.57 0.2 -11" rotation="0 49 0">
 
           <a-entity id="rachel-base">
 
-              <a-entity id="rachel-videostand" position="0 1.2 0">
+              <a-entity id="rachel-videostand" position="0 2.4 0">
                 <a-plane height="0.8" width="1.2" color="white" position="0 1 0">
                   <a-video src="#rachel-video" width="1" height="0.6" position="0 0 0.02"></a-video>
                 </a-plane>
-                <a-cylinder color="white" height="2" radius="0.02"></a-cylinder>
+                <a-cylinder color="white" height="3" radius="0.02" position="0 -0.374 0"></a-cylinder>
               </a-entity>
 
               <a-cylinder color="white">
                   
-                <a-entity id="rachel-story-1">
+                  <a-entity id="rachel-story-1" position="1.330 0.048 0">
+                      <a-plane color="white" position="-0.644 1.157 0" height="0.9" width="1">
+                          <a-text
+                          color="black"
+                          position="-0.45 0 0"
+                          wrap-count="26"
+                          width="0.8" 
+                          value="Rachel went to live with her grandmother from the age of 6 due to an abusive father. Her family wanted to protect her physically and emotionally. Her grandmother supported and encouraged Rachel, being the person with whom she found she could really talk. She chuckles as she recalls her grandmother, a devoutly religious person, working in a pantyhose factory.">
+                        </a-text>
+    
+                        <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                      </a-plane>
+  
+                      <a-gltf-model src="#rachel-leg" position="-0.766 0.465 0.392" rotation="0 0 0" scale="0.2 0.2 0.2"></a-gltf-model>
+  
+                    </a-entity>
 
-                </a-entity>
+
+
+
+                    <a-entity id="rachel-story-2" position="-0.026 0.85 0">
+                        <a-plane color="white" position="-0.644 1.157 0" height="1.1" width="1">
+                            <a-text
+                            color="black"
+                            position="-0.45 0 0"
+                            wrap-count="26"
+                            width="0.8" 
+                            value="Rachel has always had a passion for the stars and when feeling overwhelmed by her mental health she will stand outside staring up at them. As she states, e​ verything in her life was unbalanced. The only space she could find peace and breathe was at night when looking at the sky, in her opinion the stars combine both science and wonder perfectly. She wished she had a telescope to look at the stars closely and study them. If she had proper support, she would pursue a career in astronomy.">
+                          </a-text>
+      
+                          <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                        </a-plane>
+    
+                        <a-gltf-model src="#rachel-telescope" position="-0.048 -0.313 0.720" rotation="-90 -740 180" scale="0.01 0.01 0.01"></a-gltf-model>
+    
+                      </a-entity>
                 
               </a-cylinder>
             
