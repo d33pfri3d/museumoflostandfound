@@ -9,7 +9,20 @@
     <script src="scripts/aframe-sky.min.js"></script>
     <script src="scripts/camera-detect.js"></script>
     <script src="scripts/pinch-to-move.js"></script>
-    <!-- <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script> -->
+
+    <script>
+      AFRAME.registerComponent('cursor-listener', {
+        init: function(){
+          this.el.addEventListener('click', function(evt){
+            console.log(`I was clicked at: ${evt.detail}`)
+          })
+        }
+      })
+    </script>
+
+    <script>
+      
+    </script>
 
     <!-- 
       Some Notes:
@@ -135,10 +148,10 @@
       <img src="assets/images/opening.png">
     </div>
 
-    <a-scene >
+    <a-scene vr-mode-ui="false">
         
       <a-entity id="cam" camera position="0 1.6 0" wasd-controls look-controls>
-            <a-cursor scale="2 2 2" color="white" opacity="0.3">
+            <a-cursor fuse="true" fuse-timeout="800" scale="2 2 2" color="white" opacity="0.3">
             </a-cursor>
       </a-entity>
       
@@ -165,12 +178,16 @@
         <!-- Cecillia -->
 
         <a-assets-item id="cecillia-card" src="assets/people/cecillia/card.glb"></a-assets-item>
+        <a-assets-item id="cecillia-jerrycan" src="assets/people/cecillia/JERRY_CAN.glb"></a-assets-item>
 
         <!-- Deeksha -->
 
         <a-assets-item id="deeksha-shoes" src="assets/people/deeksha/jazzshoes.glb"></a-assets-item>
+        <a-assets-item id="deeksha-phone" src="assets/people/deeksha/iphone.glb"></a-assets-item>
 
         <!-- Florence -->
+
+        <a-assets-item id="florence-pills" src="assets/people/florence/Pills.glb"></a-assets-item>
 
         <!-- Graeme -->
         <video id="graeme-video" loop="true" src="assets/people/graeme/Graeme.mp4"></video>
@@ -185,6 +202,9 @@
         <video id="kamala-video" loop="true" src="assets/people/kamala/Kamala (ONLY HANDS).mp4"></video>
         <a-assets-item id="kamala-flashlight" src="assets/people/kamala/flashlight.glb"></a-assets-item>
         <a-assets-item id="kamala-notebook" src="assets/people/kamala/notebook.glb"></a-assets-item>
+
+        <a-assets-item id="kamala-plane-obj" src="assets/people/kamala/PaperPlane.obj"></a-assets-item>
+        <a-assets-item id="kamala-plane-mtl" src="assets/people/kamala/PaperPlane.mtl"></a-assets-item>
         
         <!-- Mary -->
 
@@ -203,7 +223,7 @@
 
       </a-assets>
 
-      <a-entity environment="skyType:gradient;skyColor:#404A9A;ground:hills;groundTexture:walkernoise;dressing: apparatus;lighting:none;"> 
+      <a-entity environment="skyType:gradient;skyColor:#404A9A;ground:hills;groundTexture:walkernoise;lighting:none;"> 
         <a-entity position="0 0 0">
 
             <a-entity id="alberto" position="-10 -0.05 -3.26" rotation="0 90 0">
@@ -226,7 +246,7 @@
                       <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
                     </a-plane>
 
-                    <a-gltf-model src="#alberto-passport" position="-0.623 0.8 0.25" rotation="30 60 62" scale="2 2 2"></a-gltf-model>
+                    <a-gltf-model cursor-listener src="#alberto-passport" position="-0.623 0.8 0.25" rotation="30 60 62" scale="2 2 2"></a-gltf-model>
                   </a-entity>
   
   
@@ -308,7 +328,8 @@
                     </a-plane>
                   </a-entity>
                
-                <a-gltf-model src="#allison-helmet" position="-0.5 0.6 0.39" rotation="13 -30 34" scale="1.5 1.5 1.5"></a-gltf-model>
+                <a-gltf-model cursor-listener src="#allison-helmet" position="-0.5 0.6 0.39" rotation="13 -30 34" scale="1.5 1.5 1.5"></a-gltf-model>
+                <a-gltf-model cursor-listener src="#allison-helmet" position="-0.15 0.6 0.39" rotation="13 -30 34" scale="1.5 1.5 1.5"></a-gltf-model>
                
                 <a-gltf-model src="#allison-test" position="0.4 0.745 0.39" rotation="55 -118 -127" scale="3 3 3"></a-gltf-model>
                 
@@ -397,6 +418,23 @@
 
                     </a-entity>
 
+
+                    <a-entity id="cecillia-story-2" position="0.558 1.800 0">
+                        <a-plane color="white">
+                          <a-text
+                            color="black"
+                            position="-0.45 0 0"
+                            wrap-count="26"
+                            width="0.8"
+                            value="Cecilia sees herself as the fire following the path laid down by her inspirational mother, who she sees as the petrol. Her mother cared for Cecilia and her siblings alone when her father was away for long periods from their home in Ghana. She puts the deterioration of her mental health down to her mother’s death when she was a child and not being able to deal with such emotional upheaval.">
+                          </a-text>
+                          <a-cylinder position="0 -0.785 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                        </a-plane>
+  
+                        <a-gltf-model src="#cecillia-jerrycan" position="0.227 -1.178  0.5" rotation="10 -50 -11" scale="0.04 0.04 0.04"></a-gltf-model>
+  
+                      </a-entity>
+
                     
                   </a-cylinder>
 
@@ -429,9 +467,26 @@
                           <a-cylinder position="0 -0.785 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
                         </a-plane>
   
-                        <a-gltf-model src="#deeksha-shoes" position="0 -0.85 0" rotation="10 -50 -11"></a-gltf-model>
+                        <a-gltf-model src="#deeksha-shoes" position="0 -0.85 0" rotation="10 -50 -11" scale="2 2 2"></a-gltf-model>
   
                       </a-entity>
+
+
+                      <a-entity id="deeksha-story-2" position="0.461 1.772 0">
+                          <a-plane color="white">
+                            <a-text
+                              color="black"
+                              position="-0.45 0 0"
+                              wrap-count="26"
+                              width="0.8"
+                              value="Deeksha has an app that stops her from spending too much time on social media, and a folder that says “don’t go here!” on her mobile for apps that she wants to stop using. The support she has received has meant she is able to not let social media and the pressures of celebrity culture get to her as it may have in the past.">
+                            </a-text>
+                            <a-cylinder position="0 -0.785 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                          </a-plane>
+    
+                          <a-gltf-model src="#deeksha-phone" position="0.094 -0.725 0.667" rotation="10 0 0" scale="1 1 1"></a-gltf-model>
+    
+                        </a-entity>
   
                       
                     </a-cylinder>
@@ -446,7 +501,32 @@
         <!-- Florence -->
 
 
-        <a-entity id="florence" position="-0.25 0.2 0.7">
+        <a-entity id="florence" position="-6.5 0 -22">
+
+            <a-entity id="florence-base">
+  
+                <a-cylinder color="white">
+                    
+                    <a-entity id="florence-story-1" position="-0.71 1.42 0">
+                      <a-plane color="white">
+                        <a-text
+                          color="black"
+                          position="-0.45 0 0"
+                          wrap-count="26"
+                          width="0.8"
+                          value="Florence was taken by her parents to see a doctor in Monrovia when she was 12. He gave her a banana to calm her nerves and started her on the drug, ​Chlorpromazine,​ that helped her cope with bipolar disorder. Liberia’s healthcare system looked after Florence, through high school and she became a physician’s assistant thanks to family support and the right care.">
+                        </a-text>
+                        <a-cylinder position="0 -0.785 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                      </a-plane>
+
+                      <a-gltf-model src="#florence-pills" position="1 -0.85 0" rotation="0 -180 0" scale="0.15 0.15 0.15"></a-gltf-model>
+
+                    </a-entity>
+                    
+                  </a-cylinder>
+
+
+            </a-entity>
 
         </a-entity>
 
@@ -561,6 +641,24 @@
                   <a-gltf-model src="#kamala-notebook" position="-0.6 0.66 0.7" rotation="10 -50 -11" scale="2 2 2"></a-gltf-model>
 
                 </a-entity>
+
+
+                <a-entity id="kamala-story-2" position="1.5 0 0">
+                    <a-plane color="white" position="-0.644 1.313 0" height="0.8" width="1">
+                        <a-text
+                        color="black"
+                        position="-0.45 0 0"
+                        wrap-count="26"
+                        width="0.8" 
+                        value="At the age of 14, Kamala finally found herself at school having been sold into trafficking at a young age by her parents, and then living and working in cafes on the streets of Nepal. Her mental health improved greatly and she recalls making a paper airplane and writing “Mum” and “Dad” on the wings, forgiving them for not providing her with a home and selling her into human trafficking.">
+                      </a-text>
+  
+                      <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                    </a-plane>
+  
+                    <a-obj-model src="#kamala-plane-obj" mtl="#kamala-plane-mtl" rotation="0 -55 0.9" position="0 1 0.7" scale="0.2 0.2 0.2"></a-obj-model>
+  
+                  </a-entity>
                 
               </a-cylinder>
             
@@ -735,6 +833,7 @@
         evt.preventDefault();
         stop();
       })
+
     
     </script>
   </body>
