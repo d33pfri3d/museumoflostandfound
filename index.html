@@ -213,8 +213,12 @@
         <a-assets-item id="mary-boat" src="assets/people/mary/paperboat.glb"></a-assets-item>
 
         <!-- Michelle -->
+        <a-assets-item id="michelle-didji" src="assets/people/michelle/didj.glb"></a-assets-item>
+        <a-assets-item id="michelle-moonclock" src="assets/people/michelle/moonclock.glb"></a-assets-item>
+
 
         <!-- Paula -->
+        <a-assets-item id="paula-coatrack" src="assets/people/paula/coatrack.glb"></a-assets-item>
 
         <!-- Rachel -->
         <video id="rachel-video" loop="true" src="assets/people/rachel/Rachel.mp4"></video>
@@ -769,15 +773,93 @@
 
         <!-- Michelle -->
 
-        <a-entity id="michelle" position="-0.25 0.2 0.7">
+        <a-entity id="michelle" position="9.430 0.200 -21.94">
+            <a-entity id="michelle-base">
+
+                <a-cylinder color="white">
+                  
+                  <a-entity id="michelle-story-1" position="0 0.925 0">
+                    <a-plane color="white" position="-0.644 1.157 0" height="1.1" width="1">
+                        <a-text
+                        color="black"
+                        position="-0.45 0 0"
+                        wrap-count="26"
+                        width="0.8" 
+                        value="As part of Michelle’s exploration of her aboriginal heritage, she has participated in songlines, a technique using songs passed from generation to generation to understand the ever-changing world. This allows her to understand her culture’s relationships with each other and the land. The Yidaki is an instrument that imbues the songlines. At the beginning of 2019 Michelle almost took her own life, as she has sought help from mental health institutions, she also sees participating in culturally significant practices as vital to her identity and health.">
+                      </a-text>
+  
+                      <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                    </a-plane>
+
+                    <a-gltf-model src="#michelle-didji" position="-0.6 0.3 0.7" rotation="-4 -53 -4" scale="0.5 0.5 0.5"></a-gltf-model>
+
+                  </a-entity>
+                  
+                  
+                  <a-entity id="michelle-story-2" position="1.259 0 0">
+                      <a-plane color="white" position="-0.644 1.313 0" height="0.8" width="1">
+                          <a-text
+                          color="black"
+                          position="-0.45 0 0"
+                          wrap-count="26"
+                          width="0.8" 
+                          value="Michelle has found attempting to join the working world stressful. Working to a fixed schedule conflicts with her aboriginal concept of what governs time. One of many conflicts that can occur between different cultures. If she was fully part of her aboriginal community she would live by their time, governed by the relationship with nature. As she states - we don’t own the land, the land owns us.">
+                        </a-text>
+    
+                        <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                      </a-plane>
+  
+                      <a-gltf-model src="#michelle-moonclock" position="-0.719 0.495 0.544" scale="1 1 1" rotation="-1.350 -94.14 0"></a-gltf-model>
+  
+                    </a-entity>
+                
+                </a-cylinder>
+              </a-entity>
 
         </a-entity>
 
 
         <!-- Paula -->
 
-        <a-entity id="paula" position="-0.25 0.2 0.7">
+        <a-entity id="paula" position="-12.67 0.2 -25.29">
+            <a-entity id="paula-base">
 
+                <a-cylinder color="white">
+                  
+                  <a-entity id="paula-story-1" position="0 0.925 0">
+                    <a-plane color="white" position="-0.644 1.157 0" height="0.75" width="1">
+                        <a-text
+                        color="black"
+                        position="-0.45 0 0"
+                        wrap-count="26"
+                        width="0.8" 
+                        value="Paula had to leave her home and seek full time help after an evening where her rage led her to grabbing the coat stand and smashing it to pieces against the floor. Her husband and son remain totally supportive of her, including through times where she almost took her own life up until she was given the right diagnosis.">
+                      </a-text>
+  
+                      <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                    </a-plane>
+
+                    <a-gltf-model src="#paula-coatrack" position="-1.2 -1.007 1.254" rotation="0 0 0" scale="0.5 0.5 0.5"></a-gltf-model>
+
+                  </a-entity>
+
+                  <a-entity id="paula-story-2" position="1.147 0.296 0">
+                      <a-plane color="white" position="-0.644 1.157 0" height="0.75" width="1">
+                          <a-text
+                          color="black"
+                          position="-0.45 0 0"
+                          wrap-count="26"
+                          width="0.8" 
+                          value="When Paula felt depressed, she would sit in front of the TV, alone, feeling her life ebbing away. She also attempted to hide her condition from her teenage son. Here is a calendar full of social engagements, belonging to a Paula not hiding on her couch, lost to the bipolar disorder that kept her from living a full life.">
+                        </a-text>
+    
+                        <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                      </a-plane>
+  
+                    </a-entity>
+                
+                </a-cylinder>
+              </a-entity>
         </a-entity>
 
 
