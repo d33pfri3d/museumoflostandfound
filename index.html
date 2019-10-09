@@ -192,8 +192,11 @@
         <!-- Graeme -->
         <video id="graeme-video" loop="true" src="assets/people/graeme/Graeme.mp4"></video>
         <a-assets-item id="graeme-racket" src="assets/people/graeme/racket.glb"></a-assets-item>
+        <a-assets-item id="graeme-branch" src="assets/people/graeme/branch.glb"></a-assets-item>
 
         <!-- Jazz -->
+        <video id="jazz-video" loop="true" src="assets/people/jazz/jazz.mp4"></video>
+        <a-assets-item id="jazz-badge" src="assets/people/jazz/PoliceBadge.glb"></a-assets-item>
 
         <!-- Joshua -->
         <a-assets-item id="joshua-rice" src="assets/people/joshua/rice_cups.glb"></a-assets-item>
@@ -562,7 +565,25 @@
 
                     <a-gltf-model src="#graeme-racket" position="-0.6 0.662 0.7" rotation="10 -50 -11"></a-gltf-model>
 
-                  </a-entity>                 
+                  </a-entity>
+                  
+                  
+                  <a-entity id="graeme-story-2" position="1.259 0 0">
+                      <a-plane color="white" position="-0.644 1.313 0" height="0.8" width="1">
+                          <a-text
+                          color="black"
+                          position="-0.45 0 0"
+                          wrap-count="26"
+                          width="0.8" 
+                          value="Graeme returned to the tree from which he fell over 2 decades before. He feared that it would overwhelm him, and he would see what has been lost, but instead due to the mental health support he has received it had no control over him.">
+                        </a-text>
+    
+                        <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                      </a-plane>
+  
+                      <a-gltf-model src="#graeme-branch" position="-0.719 1.029 0.7" scale="0.1 0.1 0.1" rotation="0 0 0"></a-gltf-model>
+  
+                    </a-entity>
                 
                 </a-cylinder>
               </a-entity>
@@ -572,7 +593,39 @@
 
         <!-- Jazz -->
 
-        <a-entity id="jazz" position="1 0.2 -3">
+        <a-entity id="jazz" position="5.306 -0.223 -16.5">
+            <a-entity id="jazz-base">
+
+                <a-entity id="jazz-videostand" position="0 1.2 0">
+                    <a-plane height="0.8" width="1.2" color="white" position="0 1 0">
+                        <a-video src="#jazz-video" width="1" height="0.6" position="0 0 0.02"></a-video>
+                    </a-plane>
+                    <a-cylinder color="white" height="2" radius="0.02">
+                    </a-cylinder>
+                  </a-entity>
+
+                <a-cylinder color="white">
+                  
+                  <a-entity id="jazz-story-1">
+                    <a-plane color="white" position="-0.644 1.313 0" height="0.8" width="1">
+                        <a-text
+                        color="black"
+                        position="-0.45 0 0"
+                        wrap-count="26"
+                        width="0.8" 
+                        value="The Auckland officer that found Jazz upon her last attempted suicide, vowed to stay in touch and visit her on her 21st birthday, as she knew she would make it to then. True to her word, she showed up and celebrated Jazz turning 21. She was one of the reasons that Jazz began seeking the treatment she needed for her mental health.">
+                      </a-text>
+  
+                      <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                    </a-plane>
+
+                    <a-gltf-model src="#jazz-badge" position="-0.4 0.862 0.097" rotation="10 -50 -11"></a-gltf-model>
+
+                  </a-entity>
+                  
+                
+                </a-cylinder>
+              </a-entity>
 
         </a-entity>
 
