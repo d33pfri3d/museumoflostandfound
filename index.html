@@ -76,40 +76,15 @@
         position: absolute;
         top:10%;
         left: 0;
-        height: 80%;
         width: 100%;
         background: rgba(139,85,157,0.8);
         z-index: 100;
-        display:flex;
-        flex-direction:column;
-        align-items: center;
         padding: 0 2%;
-      }
-
-      #opening-screen div{
-        
+        text-align: center;
       }
 
       #opening-screen img{
-        height: 400px;
-      }
-
-      #opening-screen p{
-        color:white;
-        font-size: 1.8rem;
-      }
-
-      #opening-screen button{
-        background: none;
-        color: white;
-        width: 200px;
-        height: 40px;
-        left: 50%;
-        margin-left: -100px;
-        bottom: 20px;
-        font-size: 28px;
-        border: none;
-        position:absolute;
+        max-height: 100%;
       }
 
       #opening-screen button:hover{
@@ -122,15 +97,14 @@
 
 
       @media (max-width: 960px) {
+
+        #opening-screen{
+          padding: 35px 0;
+          top: 35%;
+        }
       
         #opening-screen img{
-          width: 300px;
-          position: absolute;
-          left:50%;
-          margin-left: -150px;
-          top: 50%;
-          margin-top: -100px;
-          transform: translate(0, 0)
+          width:100%;
         }
 
       }
@@ -158,14 +132,7 @@
 
 
     <div id="opening-screen">
-      <div class="left">
-          <p>This is a 3D website. Use the arrow buttons to move between the exhibits. If you're on a smartphone, you can move that to look in different directions or swipe the screen. On a computer, use your mouse or touchpad to change direction!</p>
-      </div>
-
-      <div class="right">
-          <img src="assets/images/title.png" alt=""> 
-          <button id="enter-button">Enter</button>
-      </div>
+      <img src="assets/images/opening.png">
     </div>
 
     <a-scene >
@@ -698,14 +665,14 @@
     <script>
       let opening = document.getElementById("opening-screen");
       let curtain = document.querySelector(".loading-curtain");
-      let enterButton = document.getElementById("enter-button");
+      let enterButton = document.getElementById("enter");
       let video = document.getElementById('allison-video');
       let video2 = document.getElementById('graeme-video');
       let video3 = document.getElementById('rachel-video');
       let camera = document.querySelector("[camera]");
 
 
-      enterButton.onclick = () => {
+      opening.onclick = () => {
         // video.play(); video.pause();
         // video2.play(); video2.pause();
         // video3.play(); video3.pause();
