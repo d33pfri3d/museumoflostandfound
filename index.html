@@ -7,6 +7,7 @@
     <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
     <script src="scripts/aframe-x.min.js"></script>
     <script src="scripts/aframe-sky.min.js"></script>
+    <script src="scripts/aframe-physics.js"></script>
 
     <script>
       AFRAME.registerComponent('cursor-listener', {
@@ -36,6 +37,8 @@
         position: absolute;
         top:0;left:0;right:0;bottom:0;
         z-index: 10;
+        display: flex;
+        align-items: center;
       }
       
       .pledge-link{
@@ -82,11 +85,12 @@
         border:none;
       }
 
+      #right{
+        transform:rotate(180deg);
+      }
+
 
       #opening-screen{
-        position: absolute;
-        top:10%;
-        left: 0;
         width: 100%;
         background: rgba(139,85,157,0.8);
         z-index: 100;
@@ -135,18 +139,18 @@
 
     <div class="mobile-controls">
       <button id="forward">⬆</button>
-      <button id="backwards">⬇</button> 
+      <button id="backwards">⬇</button>
     </div>
 
 
-    <div class="loading-curtain"></div>
-
-
-    <div id="opening-screen">
-      <img src="assets/images/opening.png">
+    <div class="loading-curtain">
+      <div id="opening-screen">
+        <img id="loader" src="assets/images/loader.svg">
+        <img id="enter" style="display:none" src="assets/images/opening.png">
+      </div>
     </div>
 
-    <a-scene vr-mode-ui="false">
+    <a-scene vr-mode-ui="false" >
         
       <a-entity id="cam" camera position="0 1.6 0" wasd-controls look-controls>
       </a-entity>
@@ -164,7 +168,7 @@
         <!-- Allison -->
         <a-assets-item id="allison-helmet" src="assets/people/allison/motorcycle.glb">
         <a-assets-item id="allison-test" src="assets/people/allison/preg_test.glb"></a-assets-item>
-        <video id="allison-video" loop="true" src="assets/people/allison/Allison.mp4"></video>
+        <video muted playsinline preload="none" id="allison-video" loop="true" src="assets/people/allison/Allison.mp4"></video>
 
 
         <!-- Bill -->
@@ -186,12 +190,12 @@
         <a-assets-item id="florence-pills" src="assets/people/florence/Pills.glb"></a-assets-item>
 
         <!-- Graeme -->
-        <video id="graeme-video" loop="true" src="assets/people/graeme/Graeme.mp4"></video>
+        <video muted playsinline preload="none" id="graeme-video" loop="true" src="assets/people/graeme/Graeme.mp4"></video>
         <a-assets-item id="graeme-racket" src="assets/people/graeme/racket.glb"></a-assets-item>
         <a-assets-item id="graeme-branch" src="assets/people/graeme/branch.glb"></a-assets-item>
 
         <!-- Jazz -->
-        <video id="jazz-video" loop="true" src="assets/people/jazz/jazz.mp4"></video>
+        <video muted playsinline preload="none" id="jazz-video" loop="true" src="assets/people/jazz/jazz.mp4"></video>
         <a-assets-item id="jazz-badge" src="assets/people/jazz/PoliceBadge.glb"></a-assets-item>
 
         <!-- Joshua -->
@@ -199,7 +203,7 @@
         <a-assets-item id="joshua-stick" src="assets/people/joshua/Walkingstick.glb"></a-assets-item>
 
         <!-- Kamala -->
-        <video id="kamala-video" loop="true" src="assets/people/kamala/Kamala (ONLY HANDS).mp4"></video>
+        <video muted playsinline preload="none" id="kamala-video" loop="true" src="assets/people/kamala/Kamala (ONLY HANDS).mp4"></video>
         <a-assets-item id="kamala-flashlight" src="assets/people/kamala/flashlight.glb"></a-assets-item>
         <a-assets-item id="kamala-notebook" src="assets/people/kamala/notebook.glb"></a-assets-item>
 
@@ -217,7 +221,7 @@
         <a-assets-item id="paula-coatrack" src="assets/people/paula/coatrack.glb"></a-assets-item>
 
         <!-- Rachel -->
-        <video id="rachel-video" loop="true" src="assets/people/rachel/Rachel.mp4"></video>
+        <video muted playsinline preload="none" id="rachel-video" loop="true" src="assets/people/rachel/Rachel.mp4"></video>
         
         <a-assets-item id="rachel-leg" src="assets/people/rachel/Leg-low.glb"></a-assets-item>
         <a-assets-item id="rachel-telescope" src="assets/people/rachel/telescope.gltf"></a-assets-item>
@@ -236,59 +240,56 @@
       <a-entity environment="skyType:gradient;skyColor:#404A9A;ground:hills;groundTexture:walkernoise;lighting:none;"> 
         <a-entity position="0 0 0">
 
-            <a-entity id="alberto" position="-10 -0.05 -3.26" rotation="0 90 0">
+          <a-entity id="alberto" position="-10 -0.05 -3.26" rotation="0 90 0">
 
-              <a-light id="alberto-light" position="0.355 1.317 1" type="spot" angle="180"></a-light>  
-  
-              <a-entity id="alberto-base">
-                <a-cylinder color="white">
-                  
-                  
-                  <a-entity id="alberto-story-1">
-                    <a-plane color="white" position="-0.644 1.313 0" height="0.8" width="1">
+            <a-light id="alberto-light" position="0.355 1.317 1" type="spot" angle="180"></a-light>  
+
+            <a-entity id="alberto-base">
+              <a-cylinder color="white">
+                
+                
+                <a-entity id="alberto-story-1">
+                  <a-plane color="white" position="-0.644 1.313 0" height="0.8" width="1">
+                      <a-text
+                      color="black"
+                      position="-0.45 0 0"
+                      wrap-count="26"
+                      width="0.8" 
+                      value="Alberto’s depression was at its hardest when he lost his brother in a car accident. He spent many years at home in Buenos Aires unable to work and live the life he imagined. This includes traveling the world, this passport shows the places Alberto would have gone if the right treatment was there from the start.">
+                    </a-text>
+                    <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                  </a-plane>
+
+                  <a-gltf-model cursor-listener src="#alberto-passport" position="-0.623 0.8 0.25" rotation="30 60 62" scale="2 2 2"></a-gltf-model>
+                </a-entity>
+
+
+
+                <a-entity id="alberto-story-2" position="0.7 1.255 0.285" height="0.8" width="1">
+                    <a-plane color="white" height="0.62">
                         <a-text
                         color="black"
                         position="-0.45 0 0"
                         wrap-count="26"
                         width="0.8" 
-                        value="Alberto’s depression was at its hardest when he lost his brother in a car accident. He spent many years at home in Buenos Aires unable to work and live the life he imagined. This includes traveling the world, this passport shows the places Alberto would have gone if the right treatment was there from the start.">
+                        value="In Alberto’s newfound support role with Proyecto Suma, a mental health organisation in Argentina, through working with peers he recognises that isolation can be a major issue, even in major cities. He often takes people out for a coffee in the bustling city of Buenos Aires, using an informal environment to attempt to build a bond.">
                       </a-text>
-                      <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+  
+                      <a-cylinder position="0 -0.785 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
                     </a-plane>
 
-                    <a-gltf-model cursor-listener src="#alberto-passport" position="-0.623 0.8 0.25" rotation="30 60 62" scale="2 2 2"></a-gltf-model>
+                    <a-gltf-model src="#alberto-coffee" position="-0.2 -0.62 0" rotation="0 0 0" scale="2 2 2"></a-gltf-model>
                   </a-entity>
-  
-  
-  
-                  <a-entity id="alberto-story-2" position="0.7 1.255 0.285" height="0.8" width="1">
-                      <a-plane color="white" height="0.62">
-                          <a-text
-                          color="black"
-                          position="-0.45 0 0"
-                          wrap-count="26"
-                          width="0.8" 
-                          value="In Alberto’s newfound support role with Proyecto Suma, a mental health organisation in Argentina, through working with peers he recognises that isolation can be a major issue, even in major cities. He often takes people out for a coffee in the bustling city of Buenos Aires, using an informal environment to attempt to build a bond.">
-                        </a-text>
-    
-                        <a-cylinder position="0 -0.785 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
-                      </a-plane>
-
-                      <a-gltf-model src="#alberto-coffee" position="-0.2 -0.62 0" rotation="0 0 0" scale="2 2 2"></a-gltf-model>
-                    </a-entity>
-                  
                 
-                </a-cylinder>
-              </a-entity>
-
               
-  
+              </a-cylinder>
             </a-entity>
 
+            
+
+          </a-entity>
 
           <!-- Allison -->
-
-
 
           <a-entity id="allison" position="0 0 -3">
 
@@ -995,19 +996,31 @@
 
 
     <script>
+
+      let loaded = false;
+      let sceneLoaded = false;
+      let videosLoaded = false;
+
+
       let opening = document.getElementById("opening-screen");
       let curtain = document.querySelector(".loading-curtain");
       let enterButton = document.getElementById("enter");
-      let video = document.getElementById('allison-video');
-      let video2 = document.getElementById('graeme-video');
-      let video3 = document.getElementById('rachel-video');
       let camera = document.querySelector("[camera]");
+      let loader = document.getElementById("loader");
+
+      let videos = document.querySelectorAll('video');
+
+
+
+      let prePlayVideos = () => {
+        videos.forEach( (el) => {
+          el.play();
+        })
+      }
 
 
       opening.onclick = () => {
-        // video.play(); video.pause();
-        // video2.play(); video2.pause();
-        // video3.play(); video3.pause();
+        prePlayVideos();
         opening.style.display = 'none';
         curtain.style.display = 'none';
       }
@@ -1016,6 +1029,8 @@
 
       let fwd = document.getElementById("forward");
       let bk = document.getElementById("backwards");
+      let lf = document.getElementById("left");
+      let rt = document.getElementById("right");
 
       let mvfwd = ()=> {
         camera.components["wasd-controls"].keys["ArrowUp"] = true;
@@ -1028,6 +1043,10 @@
 
       let mvbk = () => {
         camera.components["wasd-controls"].keys["ArrowDown"] = true;
+      }
+
+      let turnLeft = () => {
+        camera.components["wasd-controls"].keys[""]
       }
 
       fwd.addEventListener("touchstart", (evt) => {
@@ -1067,6 +1086,13 @@
         evt.preventDefault();
         stop();
       })
+
+
+
+      setTimeout(() => {
+        enter.style.display = 'block';
+        loader.remove();
+      }, 25000)
 
     
     </script>
