@@ -213,6 +213,7 @@
         <a-assets-item id="mary-boat" src="assets/people/mary/paperboat.glb"></a-assets-item>
 
         <!-- Michelle -->
+        <video muted playsinline preload="none" id="michelle-video" loop="true" src="assets/people/michelle/MIchelle.mp4"></video>
         <a-assets-item id="michelle-didji" src="assets/people/michelle/didj.glb"></a-assets-item>
         <a-assets-item id="michelle-moonclock" src="assets/people/michelle/moonclock.glb"></a-assets-item>
 
@@ -255,7 +256,7 @@
                       position="-0.45 0 0"
                       wrap-count="26"
                       width="0.8" 
-                      value="Alberto’s depression was at its hardest when he lost his brother in a car accident. He spent many years at home in Buenos Aires unable to work and live the life he imagined. This includes traveling the world, this passport shows the places Alberto would have gone if the right treatment was there from the start.">
+                      value="Alberto&#39;s depression was at its hardest when he lost his brother in a car accident. He spent many years at home in Buenos Aires unable to work and live the life he imagined. This includes traveling the world, this passport shows the places Alberto would have gone if the right treatment was there from the start.">
                     </a-text>
                     <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
                   </a-plane>
@@ -266,13 +267,13 @@
 
 
                 <a-entity id="alberto-story-2" position="0.7 1.7 0.285" height="0.8" width="1">
-                    <a-plane color="white" height="0.8">
+                    <a-plane color="white" height="0.8" position="-0.305 0 -0.35">
                         <a-text
                         color="black"
                         position="-0.45 0 0"
                         wrap-count="26"
                         width="0.8" 
-                        value="In Alberto’s newfound support role with Proyecto Suma, a mental health organisation in Argentina, through working with peers he recognises that isolation can be a major issue, even in major cities. He often takes people out for a coffee in the bustling city of Buenos Aires, using an informal environment to attempt to build a bond.">
+                        value="In Alberto&#39;s newfound support role with Proyecto Suma, a mental health organisation in Argentina, through working with peers he recognises that isolation can be a major issue, even in major cities. He often takes people out for a coffee in the bustling city of Buenos Aires, using an informal environment to attempt to build a bond.">
                       </a-text>
   
                       <a-cylinder position="0 -0.785 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
@@ -364,7 +365,7 @@
                   <a-cylinder color="white">
                     
                     <a-entity id="bill-story-1" position="-0.71 1.42 0">
-                      <a-plane color="white">
+                      <a-plane color="white" height="0.69">
                         <a-text
                           color="black"
                           position="-0.45 0 0"
@@ -381,7 +382,7 @@
 
                     <a-entity id="bill-story-2" position="0.7 1.4 0">
 
-                        <a-plane color="white">
+                        <a-plane color="white" height="0.75">
                             <a-text
                               color="black"
                               position="-0.45 0 0"
@@ -468,7 +469,7 @@
                   <a-cylinder color="white">
                       
                       <a-entity id="deeksha-story-1" position="-0.71 1.42 0">
-                        <a-plane color="white">
+                        <a-plane color="white" position="0 0.4 0" height="0.7">
                           <a-text
                             color="black"
                             position="-0.45 0 0"
@@ -479,7 +480,7 @@
                           <a-cylinder position="0 -0.785 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
                         </a-plane>
   
-                        <a-gltf-model src="#deeksha-shoes" position="0 -0.85 0" rotation="10 -50 -11" scale="2 2 2"></a-gltf-model>
+                        <a-gltf-model src="#deeksha-shoes" position="0.3 -0.616 0.504" rotation="10 -50 -11" scale="3 3 3"></a-gltf-model>
   
                       </a-entity>
 
@@ -666,7 +667,7 @@
                   
                   
                   <a-entity id="joshua-story-2" position="1.088 0 0">
-                      <a-plane color="white" position="-0.644 1.313 0" height="0.8" width="1">
+                      <a-plane color="white" position="-0.644 1.313 0" height="0.55" width="1">
                           <a-text
                           color="black"
                           position="-0.45 0 0"
@@ -724,7 +725,7 @@
 
 
                 <a-entity id="kamala-story-2" position="1.5 0 0">
-                    <a-plane color="white" position="-0.644 1.313 0" height="0.8" width="1">
+                    <a-plane color="white" position="-0.644 1.313 0" height="0.9" width="1">
                         <a-text
                         color="black"
                         position="-0.45 0 0"
@@ -779,6 +780,14 @@
 
         <a-entity id="michelle" position="9.430 0.200 -21.94">
             <a-entity id="michelle-base">
+
+                <a-entity id="michelle-videostand" position="0 2.24 -0.1">
+                    <a-plane height="0.8" width="1.2" color="white" position="0 1 0">
+                        <a-video src="#michelle-video" width="1" height="0.6" position="0 0 0.02"></a-video>
+                    </a-plane>
+                    <a-cylinder color="white" height="3" position="0 -0.3 -0.1" radius="0.02">
+                    </a-cylinder>
+                  </a-entity>
 
                 <a-cylinder color="white">
                   
@@ -883,7 +892,7 @@
               <a-cylinder color="white">
                   
                   <a-entity id="rachel-story-1" position="1.330 0.048 0">
-                      <a-plane color="white" position="-0.644 1.157 0" height="0.9" width="1">
+                      <a-plane color="white" position="-0.644 1.992 0" height="0.9" width="1">
                           <a-text
                           color="black"
                           position="-0.45 0 0"
@@ -963,10 +972,10 @@
   
           <a-entity id="timiebi-base">
 
-              <a-cylinder color="white">
+              <a-cylinder color="white" radius="1.5">
                   
                 <a-entity id="timiebi-story-1">
-                  <a-plane color="white" position="-0.644 0.96 0" height="0.8" width="1">
+                  <a-plane color="white" position="0 3 -0.2" height="1" width="1">
                       <a-text
                       color="black"
                       position="-0.45 0 0"
@@ -975,10 +984,10 @@
                       value="Timiebi was hoping to complete her studies in London, unfortunately she was unable to and she returned to Nigeria concerned that her lack of Masters degree would affect her chances of pursuing a career in social media. Here is the dissertation she would have completed, The Impact of Social Media Marketing and Customer Engagement on Small Businesses in Nigeria, had her depression not got in the way.">
                     </a-text>
 
-                    <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                    <a-cylinder position="0 -1 -0.02" color="white" height="3" radius="0.02"></a-cylinder>
                   </a-plane>
 
-                  <a-obj-model src="#timiebi-machine" position="-0.8 0.66 -0.6" scale="0.001 0.001 0.001"></a-obj-model>
+                  <a-obj-model src="#timiebi-machine" position="-0.7 0.66 1" scale="0.001 0.001 0.001"></a-obj-model>
 
                 </a-entity>
                 
