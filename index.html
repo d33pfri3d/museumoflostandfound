@@ -5,11 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Test</title>
+    <style>
+      * {
+        color: white;
+      }
+      html,
+      body {
+        background: #404a9a !important;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      ul {
+        list-style: none;
+        display: flex;
+        justify-content: space-evenly;
+      }
+
+      li {
+        width: 100px;
+        height: 200px;
+      }
+
+      li a {
+        height: 100%;
+        display: block;
+        border: 3px solid white;
+      }
+    </style>
   </head>
   <body>
+    <h1>Pick someone to learn about</h1>
     <ul>
-      <li><a href="/allison.html">Allison</a></li>
-      <li><a href="/bill.html">Bill</a></li>
+      <li>
+        <a href="/allison.html">
+          <div class="person"></div>
+          Allison
+        </a>
+      </li>
+      <li>
+        <a href="/bill.html">
+          <div class="person"></div>
+          Bill
+        </a>
+      </li>
     </ul>
   </body>
 </html>
