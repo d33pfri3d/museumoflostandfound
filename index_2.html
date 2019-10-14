@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Museum of Lost and Found</title>
+    <meta name="description" content="A-Frame" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+    <script src="scripts/aframe-x.min.js"></script>
+    <script src="scripts/aframe-sky.min.js"></script>
+    <script src="scripts/aframe-physics.js"></script>
+
+    <script>
+      AFRAME.registerComponent('cursor-listener', {
+        init: function(){
+          this.el.addEventListener('click', function(evt){
+            console.log(`I was clicked at: ${evt.detail}`)
+          })
+        }
+      })
+    </script>
+
+    <script>
+      
+    </script>
+
+    <!-- 
+      Some Notes:
+      Blue : #404A9A
+      Purp : #8b559d
+      Yell : #fbba00
+    -->
+
+    <style>
+
+      .loading-curtain{
+        background: white;
+        position: absolute;
+        top:0;left:0;right:0;bottom:0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+      }
+      
+      .pledge-link{
+        position:absolute;
+        z-index: 1;
+        width: 72px;
+        padding:10px;
+        background: rgba(0,0,0,0.5);
+      }
+
+      .pledge-link a{
+        text-decoration: none;
+      }
+
+      .pledge-link .image{
+        background-image: url("./assets/images/pledge.svg");
+        height: 72px;
+        width: 72px;
+      }
+
+      .pledge-link p{
+        max-width: 100%;
+        color: #a3a3a5;
+        font-size: 13px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 8px;
+        text-transform: uppercase;
+        line-height: 1.2;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .mobile-controls{
+        position:absolute;
+        z-index: 999;
+        bottom: 30px;
+        left: 30px;
+      }
+
+      .mobile-controls button{
+        background: rgba(0,0,0,0.5);
+        color: white;
+        font-size: 50px;
+        border:none;
+      }
+
+      #right{
+        transform:rotate(180deg);
+      }
+
+
+      #opening-screen{
+        width: 100%;
+        background: rgba(139,85,157,0.8);
+        z-index: 100;
+        padding: 0 2%;
+        text-align: center;
+      }
+
+      #opening-screen img{
+        max-height: 100%;
+      }
+
+      #opening-screen button:hover{
+        cursor: pointer;
+      }
+
+
+
+      /* Mobile */
+
+
+      @media (max-width: 960px) {
+
+        #opening-screen{
+          padding: 35px 0;
+          top: 35%;
+        }
+      
+        #opening-screen img{
+          width:100%;
+        }
+
+      }
+
+    </style>
+
+
+  </head>
+  <body>
+
+    <div class="pledge-link">
+      <a href="https://www.gospeakyourmind.org/home#pledge">
+        <div class="image"></div>
+        <p>Pledge to Speak your mind</p>
+      </a>
+    </div>
+
+    <div class="mobile-controls">
+      <button id="forward">⬆</button>
+      <button id="backwards">⬇</button>
+    </div>
+
+
+    <div class="loading-curtain">
+      <div id="opening-screen">
+        <img id="loader" src="assets/images/loader.svg">
+        <img id="enter" style="display:none" src="assets/images/opening.png">
+      </div>
+    </div>
+
+    <a-scene vr-mode-ui="false" >
+        
+      <a-entity id="cam" camera position="0 1.6 0" wasd-controls look-controls>
+      </a-entity>
+      
+        <a-assets>
+
+        <img id="ground" src="assets/images/floor.jpg">
+
+        <!-- Speaker -->
+
+        <!-- ALberto -->
+        <a-assets-item id="alberto-passport" src="assets/people/alberto/passport.glb"></a-assets-item>
+        <a-assets-item id="alberto-coffee" src="assets/people/alberto/coffee.glb"></a-assets-item>
+
+        <!-- Allison -->
+        <a-assets-item id="allison-helmet" src="assets/people/allison/motorcycle.glb">
+        <a-assets-item id="allison-test" src="assets/people/allison/preg_test.glb"></a-assets-item>
+        <video muted playsinline preload="none" id="allison-video" loop="true" src="assets/people/allison/Allison.mp4"></video>
+
+
+        <!-- Bill -->
+        <a-assets-item id="bill-radio" src="assets/people/bill/radio.glb">
+        <a-assets-item id="bill-taxi" src="assets/people/bill/taxi.glb"></a-assets-item>
+
+        <!-- Cecillia -->
+
+        <a-assets-item id="cecillia-card" src="assets/people/cecillia/card.glb"></a-assets-item>
+        <a-assets-item id="cecillia-jerrycan" src="assets/people/cecillia/JERRY_CAN.glb"></a-assets-item>
+
+        <!-- Deeksha -->
+
+        <a-assets-item id="deeksha-shoes" src="assets/people/deeksha/jazzshoes.glb"></a-assets-item>
+        <a-assets-item id="deeksha-phone" src="assets/people/deeksha/iphone.glb"></a-assets-item>
+
+        <!-- Florence -->
+
+        <a-assets-item id="florence-pills" src="assets/people/florence/Pills.glb"></a-assets-item>
+
+        <!-- Graeme -->
+        <video muted playsinline preload="none" id="graeme-video" loop="true" src="assets/people/graeme/Graeme.mp4"></video>
+        <a-assets-item id="graeme-racket" src="assets/people/graeme/racket.glb"></a-assets-item>
+        <a-assets-item id="graeme-branch" src="assets/people/graeme/branch.glb"></a-assets-item>
+
+        <!-- Jazz -->
+        <video muted playsinline preload="none" id="jazz-video" loop="true" src="assets/people/jazz/jazz.mp4"></video>
+        <a-assets-item id="jazz-badge" src="assets/people/jazz/PoliceBadge.glb"></a-assets-item>
+
+        <!-- Joshua -->
+        <a-assets-item id="joshua-rice" src="assets/people/joshua/rice_cups.glb"></a-assets-item>
+        <a-assets-item id="joshua-stick" src="assets/people/joshua/Walkingstick.glb"></a-assets-item>
+
+        <!-- Kamala -->
+        <video muted playsinline preload="none" id="kamala-video" loop="true" src="assets/people/kamala/Kamala (ONLY HANDS).mp4"></video>
+        <a-assets-item id="kamala-flashlight" src="assets/people/kamala/flashlight.glb"></a-assets-item>
+        <a-assets-item id="kamala-notebook" src="assets/people/kamala/notebook.glb"></a-assets-item>
+
+        <a-assets-item id="kamala-plane" src="assets/people/kamala/plane-low.glb"></a-assets-item>
+        
+        <!-- Mary -->
+        <a-assets-item id="mary-boat" src="assets/people/mary/paperboat.glb"></a-assets-item>
+
+        <!-- Michelle -->
+        <video muted playsinline preload="none" id="michelle-video" loop="true" src="assets/people/michelle/MIchelle.mp4"></video>
+        <a-assets-item id="michelle-didji" src="assets/people/michelle/didj.glb"></a-assets-item>
+        <a-assets-item id="michelle-moonclock" src="assets/people/michelle/moonclock.glb"></a-assets-item>
+
+
+        <!-- Paula -->
+        <a-assets-item id="paula-coatrack" src="assets/people/paula/coatrack.glb"></a-assets-item>
+
+        <!-- Rachel -->
+        <video muted playsinline preload="none" id="rachel-video" loop="true" src="assets/people/rachel/Rachel.mp4"></video>
+        
+        <a-assets-item id="rachel-leg" src="assets/people/rachel/Leg-low.glb"></a-assets-item>
+        <a-assets-item id="rachel-telescope" src="assets/people/rachel/telescope.gltf"></a-assets-item>
+
+
+        <!-- Sodikin -->
+        <a-assets-item id="sodikin-chain" src="assets/people/sodikin/chain.glb"></a-assets-item>
+
+
+        <!-- Timiebi -->
+        <a-assets-item id="timiebi-machine" src="assets/people/timiebi/story_machine.obj"></a-assets-item>
+
+
+      </a-assets>
+
+      <a-entity environment="skyType:gradient;skyColor:#404A9A;ground:hills;groundTexture:walkernoise;lighting:none;"> 
+        <a-entity position="0 0 0">
+
+          <a-entity id="alberto" position="-10 -0.05 -3.26" rotation="0 90 0">
+
+            <a-light id="alberto-light" position="0.355 1.317 1" type="spot" angle="180"></a-light>  
+
+            <a-entity id="alberto-base">
+              <a-cylinder color="white">
+                
+                
+                <a-entity id="alberto-story-1">
+                  <a-plane color="white" position="-0.644 1.313 0" height="0.8" width="1">
+                      <a-text
+                      color="black"
+                      position="-0.45 0 0"
+                      wrap-count="26"
+                      width="0.8" 
+                      value="Alberto&#39;s depression was at its hardest when he lost his brother in a car accident. He spent many years at home in Buenos Aires unable to work and live the life he imagined. This includes traveling the world, this passport shows the places Alberto would have gone if the right treatment was there from the start.">
+                    </a-text>
+                    <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                  </a-plane>
+
+                  <a-gltf-model cursor-listener src="#alberto-passport" position="-0.623 0.8 0.25" rotation="30 60 62" scale="2 2 2"></a-gltf-model>
+                </a-entity>
+
+
+
+                <a-entity id="alberto-story-2" position="0.7 1.7 0.285" height="0.8" width="1">
+                    <a-plane color="white" height="0.8" position="-0.305 0 -0.35">
+                        <a-text
+                        color="black"
+                        position="-0.45 0 0"
+                        wrap-count="26"
+                        width="0.8" 
+                        value="In Alberto&#39;s newfound support role with Proyecto Suma, a mental health organisation in Argentina, through working with peers he recognises that isolation can be a major issue, even in major cities. He often takes people out for a coffee in the bustling city of Buenos Aires, using an informal environment to attempt to build a bond.">
+                      </a-text>
+  
+                      <a-cylinder position="0 -0.785 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                    </a-plane>
+
+                    <a-gltf-model src="#alberto-coffee" position="-0.2 -1.06 0" rotation="0 0 0" scale="2 2 2"></a-gltf-model>
+                    <a-gltf-model src="#alberto-coffee" position="-0.6 -1.06 0.4" rotation="0 0 0" scale="2 2 2"></a-gltf-model>
+                  </a-entity>
+                
+              
+              </a-cylinder>
+            </a-entity>
+
+            
+
+          </a-entity>
+
+          <!-- Allison -->
+
+          <a-entity id="allison" position="0 0 -3">
+
+              <a-light id="allison-light" position="0.355 1.317 1" type="spot" angle="180"></a-light>
+              
+              <a-entity id="allison-videostand" position="0 1.2 0">
+                <a-plane height="0.8" width="1.2" color="white" position="0 1 0">
+                    <a-video src="#allison-video" width="1" height="0.6" position="0 0 0.02"></a-video>
+                </a-plane>
+                <a-cylinder color="white" height="2" radius="0.02">
+                </a-cylinder>
+              </a-entity>
+              
+
+            <a-entity id="allison-base">
+              <a-cylinder color="white">
+                
+                <a-entity id="allison-story-1">
+                  <a-plane color="white" position="-0.644 1.313 0" height="0.8" width="1">
+                      <a-text
+                      color="black"
+                      position="-0.45 0 0"
+                      wrap-count="26"
+                      width="0.8" 
+                      value="Allison’s mental health stabilised with support from people across her life, no longer being referred to as “11-month girl”. She now enjoys long bike rides across the vastness of Canada with her long-term partner, going on adventures she would never have been able to go on years before due to an inability to stay in a relationship.">
+                    </a-text>
+
+                    <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02">
+                      </a-cylinder>
+                  </a-plane>
+                </a-entity>
+
+
+
+                <a-entity id="allison-story-2" position="0.7 1.255 0.285" height="0.8" width="1">
+                    <a-plane color="white" height="0.62">
+                        <a-text
+                        color="black"
+                        position="-0.45 0 0"
+                        wrap-count="26"
+                        width="0.8" 
+                        value="Allison had her tubes tied after coming to the conclusion that she would never be well enough to look after children. Had her mental health not deteriorated and had she received the care and support she now has; she would have liked to consider having family..">
+                      </a-text>
+  
+                      <a-cylinder position="0 -0.785 -0.02" color="white" height="2" radius="0.02">
+                        </a-cylinder>
+                    </a-plane>
+                  </a-entity>
+               
+                <a-gltf-model cursor-listener src="#allison-helmet" position="-0.5 0.6 0.39" rotation="13 -30 34" scale="1.5 1.5 1.5"></a-gltf-model>
+                <a-gltf-model cursor-listener src="#allison-helmet" position="-0.15 0.6 0.39" rotation="13 -30 34" scale="1.5 1.5 1.5"></a-gltf-model>
+               
+                <a-gltf-model src="#allison-test" position="0.4 0.745 0.39" rotation="55 -118 -127" scale="3 3 3"></a-gltf-model>
+                
+              
+              </a-cylinder>
+            </a-entity>
+            
+          </a-entity>
+
+
+          <!-- Bill -->
+
+
+
+          <a-entity id="bill" position="3.6 0 -1.3">
+
+              <a-light id="bill-light" position="0.355 1.317 1" type="spot" angle="180"></a-light>
+
+              <a-entity id="bill-base">
+                  <a-cylinder color="white">
+                    
+                    <a-entity id="bill-story-1" position="-0.71 1.42 0">
+                      <a-plane color="white" height="0.69">
+                        <a-text
+                          color="black"
+                          position="-0.45 0 0"
+                          wrap-count="26"
+                          width="0.8"
+                          value="Bill’s talent and training as a broadcast journalist were never fully realised as he was dropped by Eternal Love Winning Africa radio station when they found out he was a mental health system user. People across Liberia will never be able to listen to the stories Bill could have investigated as a broadcaster.">
+                        </a-text>
+                        <a-cylinder position="0 -0.785 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                      </a-plane>
+
+                      <a-gltf-model src="#bill-radio" position="0 -0.830 0.4" rotation="1.7 -11 -7.7" scale="2 2 2"></a-gltf-model>
+                    </a-entity>
+
+
+                    <a-entity id="bill-story-2" position="0.7 1.4 0">
+
+                        <a-plane color="white" height="0.75">
+                            <a-text
+                              color="black"
+                              position="-0.45 0 0"
+                              wrap-count="26"
+                              width="0.8"
+                              value="Medical options were not known to Bill’s family regarding his mental health. His elder brother was sitting in the back of a taxi to Monrovia when he overheard people discussing mental health institutions, he immediately recognised what his brother had been going through and began the journey to getting Bill the support he needed.">
+                            </a-text>
+                            <a-cylinder position="0 -0.785 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                          </a-plane>
+                          
+                          <a-gltf-model src="#bill-taxi" position="0 -0.777 0.4" rotation="10 -50 -11" scale="2 2 2"></a-gltf-model>
+                    </a-entity>
+                    
+              
+                    
+                  
+                  </a-cylinder>
+                </a-entity>              
+
+          </a-entity>
+
+
+          <!-- Cecillia -->
+
+          <a-entity id="cecillia" position="-3.950 -0.275 -5">
+
+            <a-light id="cecillia-light" position="0.355 1.317 1" type="spot" angle="180"></a-light>
+            
+            <a-entity id="cecillia-base">
+
+                <a-cylinder color="white">
+                    
+                    <a-entity id="cecillia-story-1" position="-0.71 1.42 0">
+                      <a-plane color="white">
+                        <a-text
+                          color="black"
+                          position="-0.45 0 0"
+                          wrap-count="26"
+                          width="0.8"
+                          value="Mental health was not originally part of the free healthcare system in Ghana and whilst Cecilia was going through early stages of bipolar disorder she was encouraged to seek traditional healing methods, which even included drinking her own urine. She is part of a team who are changing attitudes in her country, including bringing mental health into the healthcare system.">
+                        </a-text>
+                        <a-cylinder position="0 -0.785 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                      </a-plane>
+
+                      <a-gltf-model src="#cecillia-card" position="0.227 -0.6  0.5" rotation="10 -50 -11" scale="0.8 0.8 0.8"></a-gltf-model>
+
+                    </a-entity>
+
+
+                    <a-entity id="cecillia-story-2" position="0.558 1.800 0">
+                        <a-plane color="white">
+                          <a-text
+                            color="black"
+                            position="-0.45 0 0"
+                            wrap-count="26"
+                            width="0.8"
+                            value="Cecilia sees herself as the fire following the path laid down by her inspirational mother, who she sees as the petrol. Her mother cared for Cecilia and her siblings alone when her father was away for long periods from their home in Ghana. She puts the deterioration of her mental health down to her mother’s death when she was a child and not being able to deal with such emotional upheaval.">
+                          </a-text>
+                          <a-cylinder position="0 -0.785 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                        </a-plane>
+  
+                        <a-gltf-model src="#cecillia-jerrycan" position="0.227 -1.178  0.5" rotation="10 -50 -11" scale="0.04 0.04 0.04"></a-gltf-model>
+  
+                      </a-entity>
+
+                    
+                  </a-cylinder>
+
+
+            </a-entity>
+            
+
+          </a-entity>
+
+
+          <!-- Deeksha -->
+
+          <a-entity id="deeksha" position="-9.2 0.025 -15">
+
+              <a-light id="deeksha-light" position="0.355 1.317 1" type="spot" angle="180"></a-light>
+              
+              <a-entity id="deeksha-base">
+  
+                  <a-cylinder color="white">
+                      
+                      <a-entity id="deeksha-story-1" position="-0.71 1.42 0">
+                        <a-plane color="white" position="0 0.4 0" height="0.7">
+                          <a-text
+                            color="black"
+                            position="-0.45 0 0"
+                            wrap-count="26"
+                            width="0.8"
+                            value="Bullying drove Deeksha to overeating. She was told by her dance instructor that she could not continue with her dancing lessons due to her weight. The stigma was devastating. These professional jazz dance shoes belong to a Deeksha who continued her lessons and is able to dance the night away.">
+                          </a-text>
+                          <a-cylinder position="0 -0.785 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                        </a-plane>
+  
+                        <a-gltf-model src="#deeksha-shoes" position="0.3 -0.616 0.504" rotation="10 -50 -11" scale="3 3 3"></a-gltf-model>
+  
+                      </a-entity>
+
+
+                      <a-entity id="deeksha-story-2" position="0.461 1.772 0">
+                          <a-plane color="white">
+                            <a-text
+                              color="black"
+                              position="-0.45 0 0"
+                              wrap-count="26"
+                              width="0.8"
+                              value="Deeksha has an app that stops her from spending too much time on social media, and a folder that says “don’t go here!” on her mobile for apps that she wants to stop using. The support she has received has meant she is able to not let social media and the pressures of celebrity culture get to her as it may have in the past.">
+                            </a-text>
+                            <a-cylinder position="0 -0.785 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                          </a-plane>
+    
+                          <a-gltf-model src="#deeksha-phone" position="0.094 -0.725 0.667" rotation="10 0 0" scale="1 1 1"></a-gltf-model>
+    
+                        </a-entity>
+  
+                      
+                    </a-cylinder>
+  
+  
+              </a-entity>
+              
+  
+            </a-entity>
+
+        
+        <!-- Florence -->
+
+
+        <a-entity id="florence" position="-6.5 0 -22">
+
+            <a-entity id="florence-base">
+  
+                <a-cylinder color="white">
+                    
+                    <a-entity id="florence-story-1" position="-0.71 1.42 0">
+                      <a-plane color="white">
+                        <a-text
+                          color="black"
+                          position="-0.45 0 0"
+                          wrap-count="26"
+                          width="0.8"
+                          value="Florence was taken by her parents to see a doctor in Monrovia when she was 12. He gave her a banana to calm her nerves and started her on the drug, ​Chlorpromazine,​ that helped her cope with bipolar disorder. Liberia’s healthcare system looked after Florence, through high school and she became a physician’s assistant thanks to family support and the right care.">
+                        </a-text>
+                        <a-cylinder position="0 -0.785 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                      </a-plane>
+
+                      <a-gltf-model src="#florence-pills" position="1 -0.85 0" rotation="0 -180 0" scale="0.15 0.15 0.15"></a-gltf-model>
+
+                    </a-entity>
+                    
+                  </a-cylinder>
+
+
+            </a-entity>
+
+        </a-entity>
+
+
+        <!-- Graeme -->
+
+        <a-entity id="graeme" position="-1.6  0.2 -12.5">
+          
+            <a-entity id="graeme-base">
+
+                <a-entity id="graeme-videostand" position="0 1.2 0">
+                    <a-plane height="0.8" width="1.2" color="white" position="0 1 0">
+                        <a-video src="#graeme-video" width="1" height="0.6" position="0 0 0.02"></a-video>
+                    </a-plane>
+                    <a-cylinder color="white" height="2" radius="0.02">
+                    </a-cylinder>
+                  </a-entity>
+
+                <a-cylinder color="white">
+                  
+                  <a-entity id="graeme-story-1">
+                    <a-plane color="white" position="-0.644 1.313 0" height="0.8" width="1">
+                        <a-text
+                        color="black"
+                        position="-0.45 0 0"
+                        wrap-count="26"
+                        width="0.8" 
+                        value="Graeme fell out of a tree and broke his back when he was 13. Up until then he had been very active, playing badminton regularly with friends. All of this stopped and while stuck at home Graeme began to experience depression and a new, lonely world away from physical activity. Had he not lost confidence in his body, he would have lifted this racket high above his head.">
+                      </a-text>
+  
+                      <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                    </a-plane>
+
+                    <a-gltf-model src="#graeme-racket" position="-0.6 0.662 0.7" rotation="10 -50 -11"></a-gltf-model>
+
+                  </a-entity>
+                  
+                  
+                  <a-entity id="graeme-story-2" position="1.259 0 0">
+                      <a-plane color="white" position="-0.644 1.313 0" height="0.8" width="1">
+                          <a-text
+                          color="black"
+                          position="-0.45 0 0"
+                          wrap-count="26"
+                          width="0.8" 
+                          value="Graeme returned to the tree from which he fell over 2 decades before. He feared that it would overwhelm him, and he would see what has been lost, but instead due to the mental health support he has received it had no control over him.">
+                        </a-text>
+    
+                        <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                      </a-plane>
+  
+                      <a-gltf-model src="#graeme-branch" position="-0.719 1.029 0.7" scale="0.1 0.1 0.1" rotation="0 0 0"></a-gltf-model>
+  
+                    </a-entity>
+                
+                </a-cylinder>
+              </a-entity>
+
+        </a-entity>
+
+
+        <!-- Jazz -->
+
+        <a-entity id="jazz" position="5.306 -0.223 -16.5">
+            <a-entity id="jazz-base">
+
+                <a-entity id="jazz-videostand" position="0 1.2 0">
+                    <a-plane height="0.8" width="1.2" color="white" position="0 1 0">
+                        <a-video src="#jazz-video" width="1" height="0.6" position="0 0 0.02"></a-video>
+                    </a-plane>
+                    <a-cylinder color="white" height="2" radius="0.02">
+                    </a-cylinder>
+                  </a-entity>
+
+                <a-cylinder color="white">
+                  
+                  <a-entity id="jazz-story-1">
+                    <a-plane color="white" position="-0.644 1.313 0" height="0.8" width="1">
+                        <a-text
+                        color="black"
+                        position="-0.45 0 0"
+                        wrap-count="26"
+                        width="0.8" 
+                        value="The Auckland officer that found Jazz upon her last attempted suicide, vowed to stay in touch and visit her on her 21st birthday, as she knew she would make it to then. True to her word, she showed up and celebrated Jazz turning 21. She was one of the reasons that Jazz began seeking the treatment she needed for her mental health.">
+                      </a-text>
+  
+                      <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                    </a-plane>
+
+                    <a-gltf-model src="#jazz-badge" position="-0.4 0.862 0.097" rotation="10 -50 -11"></a-gltf-model>
+
+                  </a-entity>
+                  
+                
+                </a-cylinder>
+              </a-entity>
+
+        </a-entity>
+
+
+        <!-- Joshua -->
+
+        <a-entity id="joshua" position="-6.2 -0.1 -9.4">
+
+            <a-entity id="joshua-base">
+
+                <a-cylinder color="white">
+                  
+                  <a-entity id="joshua-story-1">
+                    <a-plane color="white" position="-0.644 1.313 0" height="0.8" width="1">
+                        <a-text
+                        color="black"
+                        position="-0.45 0 0"
+                        wrap-count="26"
+                        width="0.8" 
+                        value="Joshua grew up in a very poor area of Sierra Leone. As a young child, he was sent out to buy these precious 2 cups of rice, barely enough for a family meal but all they could afford. He became overwhelmed when he lost the money. It was then he had his first suicidal thoughts, feeling that taking his life would be easier than letting down his family.">
+                      </a-text>
+  
+                      <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                    </a-plane>
+
+                    <a-gltf-model src="#joshua-rice" position="-0.6 0.66 0.7" rotation="10 -50 -11" scale="0.5 0.5 0.5"></a-gltf-model>
+
+                  </a-entity>
+                  
+                  
+                  <a-entity id="joshua-story-2" position="1.088 0 0">
+                      <a-plane color="white" position="-0.644 1.313 0" height="0.55" width="1">
+                          <a-text
+                          color="black"
+                          position="-0.45 0 0"
+                          wrap-count="26"
+                          width="0.8" 
+                          value="The walking stick for Joshua is a metaphor for openness, visibility and honesty. When people are able to talk about their mental health, people see the walking stick, in turn helping to make any workplace supportive.">
+                        </a-text>
+    
+                        <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                      </a-plane>
+  
+                      <a-gltf-model src="#joshua-stick" position="-0.745 0.742 0.7" rotation="0 0 -70" scale="1 1 1"></a-gltf-model>
+  
+                    </a-entity>
+                
+                </a-cylinder>
+              </a-entity>
+
+        </a-entity>
+
+        <!-- Kamala -->
+
+
+        <a-entity id="kamala" position="7.83 0.2 -11">
+
+            <a-entity id="kamala-base">
+
+              <a-entity id="kamala-videostand" position="0 1.2 0">
+                <a-plane height="0.8" width="1.2" color="white" position="0 1 0">
+                  <a-video src="#kamala-video" width="1" height="0.6" position="0 0 0.02"></a-video>
+                </a-plane>
+                <a-cylinder color="white" height="2" radius="0.02"></a-cylinder>
+              </a-entity>
+
+              <a-cylinder color="white">
+                  
+                <a-entity id="kamala-story-1">
+                  <a-plane color="white" position="-0.644 1.313 0" height="0.8" width="1">
+                      <a-text
+                      color="black"
+                      position="-0.45 0 0"
+                      wrap-count="26"
+                      width="0.8" 
+                      value="Kamala thanks to the care of Koshish is now able to see the beauty of her country, Nepal. Something she wishes she could have found sooner. She finds the beauty so inspiring that had she seen it before she would have written songs surrounded by the mountains and valleys.
+                      ">
+                    </a-text>
+
+                    <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                  </a-plane>
+
+                  <a-gltf-model src="#kamala-flashlight" position="-0.6 0.66 0.7" rotation="10 -50 -11" scale="2 2 2"></a-gltf-model>
+                  <a-gltf-model src="#kamala-notebook" position="-0.6 0.66 0.7" rotation="10 -50 -11" scale="2 2 2"></a-gltf-model>
+
+                </a-entity>
+
+
+                <a-entity id="kamala-story-2" position="1.5 0 0">
+                    <a-plane color="white" position="-0.644 1.313 0" height="0.9" width="1">
+                        <a-text
+                        color="black"
+                        position="-0.45 0 0"
+                        wrap-count="26"
+                        width="0.8" 
+                        value="At the age of 14, Kamala finally found herself at school having been sold into trafficking at a young age by her parents, and then living and working in cafes on the streets of Nepal. Her mental health improved greatly and she recalls making a paper airplane and writing “Mum” and “Dad” on the wings, forgiving them for not providing her with a home and selling her into human trafficking.">
+                      </a-text>
+  
+                      <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                    </a-plane>
+  
+                    <a-gltf-model src="#kamala-plane" rotation="56 -95 -24" position="-1.067 0.202 0.9" scale="0.5 0.5 0.5"></a-gltf-model>
+  
+                  </a-entity>
+                
+              </a-cylinder>
+            
+            </a-entity>
+
+        </a-entity>
+
+        <!-- Mary -->
+
+        <a-entity id="mary" position="12.3 0.2 -5.916">
+            <a-entity id="mary-base">
+
+                <a-cylinder color="white">
+                    
+                  <a-entity id="mary-story-1">
+                    <a-plane color="white" position="-0.644 1.313 0" height="0.8" width="1">
+                        <a-text
+                        color="black"
+                        position="-0.45 0 0"
+                        wrap-count="26"
+                        width="0.8" 
+                        value="Mary had a passion for poetry and art. She wrote poetry only related to mental health and her artwork related to the life cycle of the butterfly. Her parents discovered the extent of her love after she died by suicide. On the front cover of Shaun Tan’s “The Red Tree” sits a little girl in a paper boat, alone drifting through the world.">
+                      </a-text>
+  
+                      <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                    </a-plane>
+  
+                    <a-gltf-model src="#mary-boat" position="1.952 2 -0.118" rotation="90 0 0" scale="30 30 30"></a-gltf-model>
+  
+                  </a-entity>                  
+                </a-cylinder>
+
+            </a-entity>
+        </a-entity>
+
+
+        <!-- Michelle -->
+
+        <a-entity id="michelle" position="9.430 0.200 -21.94">
+            <a-entity id="michelle-base">
+
+                <a-entity id="michelle-videostand" position="0 2.24 -0.1">
+                    <a-plane height="0.8" width="1.2" color="white" position="0 1 0">
+                        <a-video src="#michelle-video" width="1" height="0.6" position="0 0 0.02"></a-video>
+                    </a-plane>
+                    <a-cylinder color="white" height="3" position="0 -0.3 -0.1" radius="0.02">
+                    </a-cylinder>
+                  </a-entity>
+
+                <a-cylinder color="white">
+                  
+                  <a-entity id="michelle-story-1" position="0 0.925 0">
+                    <a-plane color="white" position="-0.644 1.157 0" height="1.1" width="1">
+                        <a-text
+                        color="black"
+                        position="-0.45 0 0"
+                        wrap-count="26"
+                        width="0.8" 
+                        value="As part of Michelle’s exploration of her aboriginal heritage, she has participated in songlines, a technique using songs passed from generation to generation to understand the ever-changing world. This allows her to understand her culture’s relationships with each other and the land. The Yidaki is an instrument that imbues the songlines. At the beginning of 2019 Michelle almost took her own life, as she has sought help from mental health institutions, she also sees participating in culturally significant practices as vital to her identity and health.">
+                      </a-text>
+  
+                      <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                    </a-plane>
+
+                    <a-gltf-model src="#michelle-didji" position="-0.6 0.3 0.7" rotation="-4 -53 -4" scale="0.5 0.5 0.5"></a-gltf-model>
+
+                  </a-entity>
+                  
+                  
+                  <a-entity id="michelle-story-2" position="1.259 0 0">
+                      <a-plane color="white" position="-0.644 1.313 0" height="0.8" width="1">
+                          <a-text
+                          color="black"
+                          position="-0.45 0 0"
+                          wrap-count="26"
+                          width="0.8" 
+                          value="Michelle has found attempting to join the working world stressful. Working to a fixed schedule conflicts with her aboriginal concept of what governs time. One of many conflicts that can occur between different cultures. If she was fully part of her aboriginal community she would live by their time, governed by the relationship with nature. As she states - we don’t own the land, the land owns us.">
+                        </a-text>
+    
+                        <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                      </a-plane>
+  
+                      <a-gltf-model src="#michelle-moonclock" position="-0.719 0.495 0.544" scale="1 1 1" rotation="-1.350 -94.14 0"></a-gltf-model>
+  
+                    </a-entity>
+                
+                </a-cylinder>
+              </a-entity>
+
+        </a-entity>
+
+
+        <!-- Paula -->
+
+        <a-entity id="paula" position="-12.67 0.2 -25.29">
+            <a-entity id="paula-base">
+
+                <a-cylinder color="white">
+                  
+                  <a-entity id="paula-story-1" position="0 0.925 0">
+                    <a-plane color="white" position="-0.644 1.157 0" height="0.75" width="1">
+                        <a-text
+                        color="black"
+                        position="-0.45 0 0"
+                        wrap-count="26"
+                        width="0.8" 
+                        value="Paula had to leave her home and seek full time help after an evening where her rage led her to grabbing the coat stand and smashing it to pieces against the floor. Her husband and son remain totally supportive of her, including through times where she almost took her own life up until she was given the right diagnosis.">
+                      </a-text>
+  
+                      <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                    </a-plane>
+
+                    <a-gltf-model src="#paula-coatrack" position="-1.2 -1.007 1.254" rotation="0 0 0" scale="0.5 0.5 0.5"></a-gltf-model>
+
+                  </a-entity>
+
+                  <a-entity id="paula-story-2" position="1.147 0.296 0">
+                      <a-plane color="white" position="-0.644 1.157 0" height="0.75" width="1">
+                          <a-text
+                          color="black"
+                          position="-0.45 0 0"
+                          wrap-count="26"
+                          width="0.8" 
+                          value="When Paula felt depressed, she would sit in front of the TV, alone, feeling her life ebbing away. She also attempted to hide her condition from her teenage son. Here is a calendar full of social engagements, belonging to a Paula not hiding on her couch, lost to the bipolar disorder that kept her from living a full life.">
+                        </a-text>
+    
+                        <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                      </a-plane>
+  
+                    </a-entity>
+                
+                </a-cylinder>
+              </a-entity>
+        </a-entity>
+
+
+        <!-- Rachel -->
+
+        <a-entity id="rachel" position="-14.57 0.2 -11" rotation="0 49 0">
+
+          <a-entity id="rachel-base">
+
+              <a-entity id="rachel-videostand" position="0 2.4 0">
+                <a-plane height="0.8" width="1.2" color="white" position="0 1 0">
+                  <a-video src="#rachel-video" width="1" height="0.6" position="0 0 0.02"></a-video>
+                </a-plane>
+                <a-cylinder color="white" height="3" radius="0.02" position="0 -0.374 0"></a-cylinder>
+              </a-entity>
+
+              <a-cylinder color="white">
+                  
+                  <a-entity id="rachel-story-1" position="1.330 0.048 0">
+                      <a-plane color="white" position="-0.644 1.992 0" height="0.9" width="1">
+                          <a-text
+                          color="black"
+                          position="-0.45 0 0"
+                          wrap-count="26"
+                          width="0.8" 
+                          value="Rachel went to live with her grandmother from the age of 6 due to an abusive father. Her family wanted to protect her physically and emotionally. Her grandmother supported and encouraged Rachel, being the person with whom she found she could really talk. She chuckles as she recalls her grandmother, a devoutly religious person, working in a pantyhose factory.">
+                        </a-text>
+    
+                        <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                      </a-plane>
+  
+                      <a-gltf-model src="#rachel-leg" position="-0.766 0.465 0.392" rotation="0 0 0" scale="0.2 0.2 0.2"></a-gltf-model>
+  
+                    </a-entity>
+
+
+
+
+                    <a-entity id="rachel-story-2" position="-0.026 0.85 0">
+                        <a-plane color="white" position="-0.644 1.157 0" height="1.1" width="1">
+                            <a-text
+                            color="black"
+                            position="-0.45 0 0"
+                            wrap-count="26"
+                            width="0.8" 
+                            value="Rachel has always had a passion for the stars and when feeling overwhelmed by her mental health she will stand outside staring up at them. As she states, e​ verything in her life was unbalanced. The only space she could find peace and breathe was at night when looking at the sky, in her opinion the stars combine both science and wonder perfectly. She wished she had a telescope to look at the stars closely and study them. If she had proper support, she would pursue a career in astronomy.">
+                          </a-text>
+      
+                          <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                        </a-plane>
+    
+                        <a-gltf-model src="#rachel-telescope" position="-0.048 -0.313 0.720" rotation="-90 -740 180" scale="0.01 0.01 0.01"></a-gltf-model>
+    
+                      </a-entity>
+                
+              </a-cylinder>
+            
+            </a-entity>
+
+        </a-entity>
+
+        <!-- Sodkin -->
+
+        <a-entity id="sodikin" position="4 -0.213 -28.35">
+
+            <a-entity id="sodikin-base">
+
+                <a-cylinder color="white">
+                    
+                  <a-entity id="sodikin-story-1">
+                    <a-plane color="white" position="-0.644 0.96 0" height="0.8" width="1">
+                        <a-text
+                        color="black"
+                        position="-0.45 0 0"
+                        wrap-count="26"
+                        width="0.8"
+                        value="Sodikin spent over eight years locked in a shed, fed through a hole, simply because he has a mental health condition and his family didn’t know what else to do. Since being found by Human Rights Watch, Sodikin is now the main breadwinner for the family and living a full life.">
+                      </a-text>
+  
+                      <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02"></a-cylinder>
+                    </a-plane>
+  
+                    <a-gltf-model src="#sodikin-chain" position="0.279 1.018 0.453" scale="0.3 0.3 0.3"></a-gltf-model>
+  
+                  </a-entity>
+                  
+                </a-cylinder>
+              
+              </a-entity>
+
+        </a-entity>
+
+
+        <!-- TIMIEBI -->
+
+        <a-entity id="timiebi" position="-0.25 -0.3 -20.7">
+  
+          <a-entity id="timiebi-base">
+
+              <a-cylinder color="white" radius="1.5">
+                  
+                <a-entity id="timiebi-story-1">
+                  <a-plane color="white" position="0 3 -0.2" height="1" width="1">
+                      <a-text
+                      color="black"
+                      position="-0.45 0 0"
+                      wrap-count="26"
+                      width="0.8"
+                      value="Timiebi was hoping to complete her studies in London, unfortunately she was unable to and she returned to Nigeria concerned that her lack of Masters degree would affect her chances of pursuing a career in social media. Here is the dissertation she would have completed, The Impact of Social Media Marketing and Customer Engagement on Small Businesses in Nigeria, had her depression not got in the way.">
+                    </a-text>
+
+                    <a-cylinder position="0 -1 -0.02" color="white" height="3" radius="0.02"></a-cylinder>
+                  </a-plane>
+
+                  <a-obj-model src="#timiebi-machine" position="-0.7 0.66 1" scale="0.001 0.001 0.001"></a-obj-model>
+
+                </a-entity>
+                
+              </a-cylinder>
+            
+            </a-entity>
+
+        </a-entity>
+          
+        </a-entity>
+      </a-entity>
+    </a-scene>
+
+
+
+
+
+    <script>
+
+      let loaded = false;
+      let sceneLoaded = false;
+      let videosLoaded = false;
+
+
+      let opening = document.getElementById("opening-screen");
+      let curtain = document.querySelector(".loading-curtain");
+      let enterButton = document.getElementById("enter");
+      let camera = document.querySelector("[camera]");
+      let loader = document.getElementById("loader");
+
+      let videos = document.querySelectorAll('video');
+
+
+
+      let prePlayVideos = () => {
+        videos.forEach( (el) => {
+          el.play();
+        })
+      }
+
+
+      opening.onclick = () => {
+        prePlayVideos();
+        opening.style.display = 'none';
+        curtain.style.display = 'none';
+      }
+
+      // Mobile controls
+
+      let fwd = document.getElementById("forward");
+      let bk = document.getElementById("backwards");
+      let lf = document.getElementById("left");
+      let rt = document.getElementById("right");
+
+      let mvfwd = ()=> {
+        camera.components["wasd-controls"].keys["ArrowUp"] = true;
+      }
+
+      let stop = () => {
+        camera.components["wasd-controls"].keys["ArrowDown"] = false;
+        camera.components["wasd-controls"].keys["ArrowUp"] = false;
+      }
+
+      let mvbk = () => {
+        camera.components["wasd-controls"].keys["ArrowDown"] = true;
+      }
+
+      let turnLeft = () => {
+        camera.components["wasd-controls"].keys[""]
+      }
+
+      fwd.addEventListener("touchstart", (evt) => {
+        evt.preventDefault();
+        mvfwd();
+      })
+
+      fwd.addEventListener("touchend", (evt) => {
+        evt.preventDefault();
+        stop();
+      })
+
+      fwd.addEventListener("mousedown", (evt) => {
+        mvfwd();
+      })
+
+      fwd.addEventListener("mouseup", (evt) => {
+        stop();
+      })
+
+      bk.addEventListener("touchstart", (evt) => {
+        evt.preventDefault();
+        mvbk();
+      })
+
+      bk.addEventListener("touchend", (evt) => {
+        evt.preventDefault();
+        stop();
+      })
+
+      bk.addEventListener("mousedown", (evt) => {
+        evt.preventDefault();
+        mvbk();
+      })
+
+      bk.addEventListener("mouseup", (evt) => {
+        evt.preventDefault();
+        stop();
+      })
+
+
+
+      setTimeout(() => {
+        enter.style.display = 'block';
+        loader.remove();
+      }, 25000)
+
+    
+    </script>
+  </body>
+</html>
