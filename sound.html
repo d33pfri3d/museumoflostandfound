@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Museum of Lost and Found :: Sound Experience</title>
+    <meta name="description" content="A-Frame" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+    <script src="scripts/aframe-x.min.js"></script>
+    <script src="scripts/aframe-sky.min.js"></script>
+    <script src="scripts/aframe-physics.js"></script>
+
+    <script>
+      AFRAME.registerComponent("cursor-listener", {
+        init: function() {
+          this.el.addEventListener("click", function(evt) {
+            console.log(`I was clicked at: ${evt.detail}`);
+          });
+        }
+      });
+    </script>
+
+    <!-- 
+      Some Notes:
+      Blue : #404A9A
+      Purp : #8b559d
+      Yell : #fbba00
+    -->
+
+    <style>
+      .loading-curtain {
+        background: white;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+      }
+
+      .pledge-link {
+        position: absolute;
+        z-index: 1;
+        width: 72px;
+        padding: 10px;
+        background: rgba(0, 0, 0, 0.5);
+      }
+
+      .pledge-link a {
+        text-decoration: none;
+      }
+
+      .pledge-link .image {
+        background-image: url("./assets/images/pledge.svg");
+        height: 72px;
+        width: 72px;
+      }
+
+      .pledge-link p {
+        max-width: 100%;
+        color: #a3a3a5;
+        font-size: 13px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 8px;
+        text-transform: uppercase;
+        line-height: 1.2;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .mobile-controls {
+        position: absolute;
+        z-index: 999;
+        bottom: 30px;
+        left: 30px;
+      }
+
+      .mobile-controls button {
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        font-size: 50px;
+        border: none;
+      }
+
+      #right {
+        transform: rotate(180deg);
+      }
+
+      #opening-screen {
+        width: 100%;
+        background: rgba(139, 85, 157, 0.8);
+        z-index: 100;
+        padding: 0 2%;
+        text-align: center;
+      }
+
+      #opening-screen img {
+        max-height: 100%;
+      }
+
+      #opening-screen button:hover {
+        cursor: pointer;
+      }
+
+      /* Mobile */
+
+      @media (max-width: 960px) {
+        #opening-screen {
+          padding: 35px 0;
+          top: 35%;
+        }
+
+        #opening-screen img {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="pledge-link">
+      <a href="https://www.gospeakyourmind.org/home#pledge">
+        <div class="image"></div>
+        <p>Pledge to Speak your mind</p>
+      </a>
+    </div>
+
+    <div class="mobile-controls">
+      <button id="forward">⬆</button>
+      <button id="backwards">⬇</button>
+    </div>
+
+    <div class="loading-curtain">
+      <div id="opening-screen">
+        <img id="loader" src="assets/images/loader.svg" />
+        <img id="enter" style="display:none" src="assets/images/opening.png" />
+      </div>
+    </div>
+
+    <a-scene vr-mode-ui="false">
+      <a-light type="ambient"></a-light>
+        
+        <a-entity id="cam" camera position="7 1.6 1.7" wasd-controls look-controls></a-entity>
+
+      <a-assets>
+
+        <!-- Speaker -->
+        <a-asset-item id="speaker-obj" src="assets/models/loudspeaker_obj.obj"></a-asset-item>
+        <a-asset-item id="speaker-mtl" src="assets/models/loudspeaker_obj.mtl"></a-asset-item>
+
+
+        <a-asset-item id="gallery-model" src="assets/models/gallery/scene.gltf"></a-asset-item>
+
+
+        <!-- Sounds -->
+        <audio id="bill-sound" src="assets/people/bill/Bill.wav" preload="auto"></audio>
+        <audio id="florence-sound" src="assets/people/florence/Florence.wav" preload="auto"></audio>
+
+      </a-assets>
+
+      <a-entity>
+        <a-entity position="0 0 0">
+
+
+          <a-gltf-model src="#gallery-model" position="0 0 0" rotation="0 90 0" scale="0.007 0.007 0.007">
+
+              <a-obj-model sound="src: #florence-sound; autoplay: true; rolloffFactor: 10" rotation="0 180 0" position="-20 180 -160" scale="1 1 1" src="#speaker-obj" mtl="#speaker-mtl">
+                  <a-light type="spot" rotation="-90 -56 35" position="182 480 504"></a-light>
+              </a-obj-model>
+
+
+              <a-obj-model sound="src: #florence-sound; autoplay: true; rolloffFactor: 10" rotation="0 180 0" position="-20 270 441" scale="1 1 1" src="#speaker-obj" mtl="#speaker-mtl">
+                  <a-light type="spot" rotation="-90 -56 35" position="182 480 504"></a-light>
+              </a-obj-model>
+
+
+          </a-gltf-model>
+
+        </a-entity>
+      </a-entity>
+    </a-scene>
+
+    <script>
+      let loaded = false;
+      let sceneLoaded = false;
+
+      let opening = document.getElementById("opening-screen");
+      let curtain = document.querySelector(".loading-curtain");
+      let enterButton = document.getElementById("enter");
+      let camera = document.querySelector("[camera]");
+      let loader = document.getElementById("loader");
+
+      opening.onclick = () => {
+        opening.style.display = "none";
+        curtain.style.display = "none";
+      };
+
+      // Mobile controls
+
+      let fwd = document.getElementById("forward");
+      let bk = document.getElementById("backwards");
+      let lf = document.getElementById("left");
+      let rt = document.getElementById("right");
+
+      let mvfwd = () => {
+        camera.components["wasd-controls"].keys["ArrowUp"] = true;
+      };
+
+      let stop = () => {
+        camera.components["wasd-controls"].keys["ArrowDown"] = false;
+        camera.components["wasd-controls"].keys["ArrowUp"] = false;
+      };
+
+      let mvbk = () => {
+        camera.components["wasd-controls"].keys["ArrowDown"] = true;
+      };
+
+      let turnLeft = () => {
+        camera.components["wasd-controls"].keys[""];
+      };
+
+      fwd.addEventListener("touchstart", evt => {
+        evt.preventDefault();
+        mvfwd();
+      });
+
+      fwd.addEventListener("touchend", evt => {
+        evt.preventDefault();
+        stop();
+      });
+
+      fwd.addEventListener("mousedown", evt => {
+        mvfwd();
+      });
+
+      fwd.addEventListener("mouseup", evt => {
+        stop();
+      });
+
+      bk.addEventListener("touchstart", evt => {
+        evt.preventDefault();
+        mvbk();
+      });
+
+      bk.addEventListener("touchend", evt => {
+        evt.preventDefault();
+        stop();
+      });
+
+      bk.addEventListener("mousedown", evt => {
+        evt.preventDefault();
+        mvbk();
+      });
+
+      bk.addEventListener("mouseup", evt => {
+        evt.preventDefault();
+        stop();
+      });
+
+      setTimeout(() => {
+        enter.style.display = "block";
+        loader.remove();
+      }, 20000);
+
+    </script>
+  </body>
+</html>
