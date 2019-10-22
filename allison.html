@@ -157,34 +157,29 @@
       
         <a-assets>
 
-        <img id="ground" src="assets/images/floor.jpg">
+          <a-assets-item id="room" src="assets/models/room/scene.gltf"></a-assets-item>
+          <!-- Speaker -->
 
-        <!-- Speaker -->
-
-        <!-- Allison -->
-        <a-assets-item id="allison-helmet" src="assets/people/allison/motorcycle.glb">
-        <a-assets-item id="allison-test" src="assets/people/allison/preg_test.glb"></a-assets-item>
-        <video muted playsinline preload="none" id="allison-video" loop="true" src="assets/people/allison/Allison.mp4"></video>
+          <!-- Allison -->
+          <a-assets-item id="allison-helmet" src="assets/people/allison/motorcycle.glb">
+          <a-assets-item id="allison-test" src="assets/people/allison/preg_test.glb"></a-assets-item>
+          <video muted playsinline preload="none" id="allison-video" loop="true" src="assets/people/allison/Allison.mp4"></video>
 
 
-      </a-assets>
+        </a-assets>
 
-      <a-entity environment="skyType:gradient;skyColor:#404A9A;ground:hills;groundTexture:walkernoise;lighting:none;"> 
+      <a-entity> 
         <a-entity position="0 0 0">
+
+          <a-light position="0.6 7.7 0.721" intensity="8"></a-light>
+
+          <a-gltf-model src="#room" position="0 0.01 0" rotation="0 0 0" scale="0.020 0.020 0.020"></a-gltf-model>
 
           <!-- Allison -->
 
           <a-entity id="allison" position="0 0 -3">
-
-              <a-light id="allison-light" position="0.355 1.317 1" type="spot" angle="180"></a-light>
               
-              <a-entity id="allison-videostand" position="0 1.2 0">
-                <a-plane height="0.8" width="1.2" color="white" position="0 1 0">
-                    <a-video src="#allison-video" width="1" height="0.6" position="0 0 0.02"></a-video>
-                </a-plane>
-                <a-cylinder color="white" height="2" radius="0.02">
-                </a-cylinder>
-              </a-entity>
+            <a-entity id="allison-videoplayer" material="shader: flat; side: double; src: #allison-video" geometry="primitive: cylinder; radius: 8; height: 3.6815; open-ended: true; theta-start: 142.5; theta-length: 53;" position="0.255 2.477 3.039" rotation="0 75 0" scale="-1 1 1"></a-entity>
               
 
             <a-entity id="allison-base">
@@ -199,26 +194,21 @@
                       width="0.8" 
                       value="Allison’s mental health stabilised with support from people across her life, no longer being referred to as “11-month girl”. She now enjoys long bike rides across the vastness of Canada with her long-term partner, going on adventures she would never have been able to go on years before due to an inability to stay in a relationship.">
                     </a-text>
-
-                    <a-cylinder position="0 -0.6 -0.02" color="white" height="2" radius="0.02">
-                      </a-cylinder>
                   </a-plane>
                 </a-entity>
 
 
 
-                <a-entity id="allison-story-2" position="0.7 1.255 0.285" height="0.8" width="1">
-                    <a-plane color="white" height="0.62">
+                <a-entity id="allison-story-2" position="-1.4 2.143 -4.467" rotation="0 10 0" height="3" width="3">
+                    <a-plane color="white" height="2" width="3">
                         <a-text
                         color="black"
-                        position="-0.45 0 0"
+                        position="-1.390 0 0.031"
                         wrap-count="26"
-                        width="0.8" 
+                        width="2.8" 
                         value="Allison had her tubes tied after coming to the conclusion that she would never be well enough to look after children. Had her mental health not deteriorated and had she received the care and support she now has; she would have liked to consider having family..">
                       </a-text>
-  
-                      <a-cylinder position="0 -0.785 -0.02" color="white" height="2" radius="0.02">
-                        </a-cylinder>
+
                     </a-plane>
                   </a-entity>
                

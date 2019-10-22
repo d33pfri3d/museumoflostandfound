@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Museum of Lost and Found</title>
+    <meta name="description" content="A-Frame" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+    <script src="scripts/aframe-x.min.js"></script>
+    <script src="scripts/aframe-sky.min.js"></script>
+    <script src="scripts/aframe-physics.js"></script>
+
+    <!-- 
+      Some Notes:
+      Blue : #404A9A
+      Purp : #8b559d
+      Yell : #fbba00
+    -->
+
+    <style>
+      .loading-curtain {
+        background: white;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+      }
+
+      .pledge-link {
+        position: absolute;
+        z-index: 1;
+        width: 72px;
+        padding: 10px;
+        background: rgba(0, 0, 0, 0.5);
+      }
+
+      .pledge-link a {
+        text-decoration: none;
+      }
+
+      .pledge-link .image {
+        background-image: url("./assets/images/pledge.svg");
+        height: 72px;
+        width: 72px;
+      }
+
+      .pledge-link p {
+        max-width: 100%;
+        color: #a3a3a5;
+        font-size: 13px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 8px;
+        text-transform: uppercase;
+        line-height: 1.2;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .mobile-controls {
+        position: absolute;
+        z-index: 999;
+        bottom: 30px;
+        left: 30px;
+      }
+
+      .mobile-controls button {
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        font-size: 50px;
+        border: none;
+      }
+
+      #right {
+        transform: rotate(180deg);
+      }
+
+      #opening-screen {
+        width: 100%;
+        background: rgba(139, 85, 157, 0.8);
+        z-index: 100;
+        padding: 0 2%;
+        text-align: center;
+      }
+
+      #opening-screen img {
+        max-height: 100%;
+      }
+
+      #opening-screen button:hover {
+        cursor: pointer;
+      }
+
+      /* Mobile */
+
+      @media (max-width: 960px) {
+        #opening-screen {
+          padding: 35px 0;
+          top: 35%;
+        }
+
+        #opening-screen img {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="pledge-link">
+      <a href="https://www.gospeakyourmind.org/home#pledge">
+        <div class="image"></div>
+        <p>Pledge to Speak your mind</p>
+      </a>
+    </div>
+
+    <div class="loading-curtain">
+      <div id="opening-screen">
+        <img id="loader" src="assets/images/loader.svg" />
+        <img id="enter" style="display:none" src="assets/images/opening.png" />
+      </div>
+    </div>
+
+    <a-scene vr-mode-ui="false">
+      <a-entity id="cam" camera position="0 1.6 0" wasd-controls look-controls>
+      </a-entity>
+
+      <a-assets>
+        <a-assets-item id="room" src="assets/models/escher.glb"></a-assets-item>
+      </a-assets>
+
+      <a-entity>
+        <a-entity position="0 0 0">
+          <a-gltf-model src="#room"></a-gltf-model>
+        </a-entity>
+      </a-entity>
+    </a-scene>
+
+    <script>
+      let loaded = false;
+      let sceneLoaded = false;
+      let videosLoaded = false;
+
+      let opening = document.getElementById("opening-screen");
+      let curtain = document.querySelector(".loading-curtain");
+      let enterButton = document.getElementById("enter");
+      let camera = document.querySelector("[camera]");
+      let loader = document.getElementById("loader");
+
+      opening.onclick = () => {
+        opening.style.display = "none";
+        curtain.style.display = "none";
+      };
+
+      setTimeout(() => {
+        enter.style.display = "block";
+        loader.remove();
+      }, 2000);
+    </script>
+  </body>
+</html>
